@@ -1,0 +1,13 @@
+site_name: Neo6502 Documentation
+nav:
+  - Home: index.md
+  - Read me first:
+      - 'About the hardware': welcome/about.md
+      - 'Before Purchasing': welcome/before.md
+      - 'Out of the Box': welcome/starting.md
+      - 'Trying it out': welcome/tryingout.md
+      - 'What Next ?': welcome/next.md
+  - Reference:
+      - 'API Guide': reference/api.md
+      - 'API Reference' : reference/api-listing.md
+      - 'BASIC Reference' : reference/basic.md
