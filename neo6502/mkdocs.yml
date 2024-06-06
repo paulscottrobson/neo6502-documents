@@ -4,6 +4,7 @@ nav:
   - Read me first:
       - 'About the hardware': welcome/about.md
       - 'Before Purchasing': welcome/before.md
+      - 'Where to buy a Neo6502': welcome/where.md
       - 'Out of the Box': welcome/starting.md
       - 'Trying it out': welcome/tryingout.md
       - 'What Next ?': welcome/next.md

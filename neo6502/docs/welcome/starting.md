@@ -30,7 +30,9 @@ If you are using the SD card it should come with a short ribbon cable which plug
 
 ## Reprogramming with Morpheus
 
-First you need to download the current release of the Morpheus software from https://github.com/paulscottrobson/neo6502-firmware . The releases are on the right of the screen, the current release is 0.28.1. Clicking on it should show the releases page which has a link to "neo6502.zip"
+First you need to download the current release of the Morpheus software [here](https://github.com/paulscottrobson/neo6502-firmware) . 
+
+The releases are on the right of the screen, the current release is 0.30.0. Clicking on it should show the releases page which has a link to "neo6502.zip"
 
 Download and extract this file. You will see something like this, this is Linux, but it will be very similar on Windows or Macintosh.
 
@@ -50,7 +52,7 @@ The board should now appear in the file system of your host computer. For exampl
 
 You now need to copy the uf2 file above to this drive. This again depends on the system you are using.
 
-Hopefully the system should now boot. The machine should make it's boot sound (a low beep and a high beep - it sounds like a BBC Micro) https://www.youtube.com/watch?v=Nd9MzxIbuQI and it should display the Neo6502 logo, title, and Olimex title.
+Hopefully the system should now boot. The machine should make it's boot sound (a low beep and a high beep - it sounds like a BBC Micro) [listen here](https://www.youtube.com/watch?v=Nd9MzxIbuQI) and it should display the Neo6502 logo, title, and Olimex title.
 
 **Finally** unplug the A cable and plug the USB hub or keyboard back in. More than once I have forgotten to do this and wondered why the keyboard is not working.
 

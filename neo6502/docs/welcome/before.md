@@ -62,4 +62,4 @@ Sound is provided on board by a simple buzzer. This is perfectly okay for beeps 
 
 The system does still support the use of SD Cards. This requires the Olimex UEXT SD Card adaptor.
 
-[What to do "out of the box"](starting.md)
+[Where to buy a Neo6502"](where.md)
