@@ -1,5 +1,7 @@
 # Neo6502 Specification
 
+There is pdf copy of this documentation [here](https://neo6502.com/pdf/document.pdf)
+
 ![](welcome/assets/Neo6502-a.jpg)
 
 - Real 65C02 Processor clocked at 6.25 Mhz

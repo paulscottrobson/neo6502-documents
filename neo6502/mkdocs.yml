@@ -1,14 +1,54 @@
 site_name: Neo6502 Documentation
+
 nav:
-  - Home: index.md
-  - Read me first:
-      - 'About the hardware': welcome/about.md
-      - 'Before Purchasing': welcome/before.md
-      - 'Where to buy a Neo6502': welcome/where.md
-      - 'Out of the Box': welcome/starting.md
-      - 'Trying it out': welcome/tryingout.md
-      - 'What Next ?': welcome/next.md
-  - Reference:
-      - 'API Guide': reference/api.md
-      - 'API Reference' : reference/api-listing.md
-      - 'BASIC Reference' : reference/basic.md
+    - Home: index.md
+    - Read me first:
+        - 'About the hardware': welcome/about.md
+        - 'Before Purchasing': welcome/before.md
+        - 'Where to buy a Neo6502': welcome/where.md
+        - 'Out of the Box': welcome/starting.md
+        - 'Trying it out': welcome/tryingout.md
+        - 'What Next ?': welcome/next.md
+    - Reference:
+        - 'API Guide': reference/api.md
+        - 'API Reference' : reference/api-listing.md
+        - 'BASIC Reference' : reference/basic.md
+
+plugins:
+    - with-pdf:      
+        cover: true
+        cover_title: Neo6502 Documentation
+        cover_subtitle: 'Paul Robson'
+        author: Paul Robson and others
+        copyright: Open Source
+#
+#back_cover: true
+#custom_template_path: TEMPLATES PATH
+#
+#toc_title: TOC TITLE TEXT
+#heading_shift: false
+#toc_level: 3
+#ordered_chapter_level: 2
+#excludes_children:
+#    - 'release-notes/:upgrading'
+#    - 'release-notes/:changelog'
+#
+#exclude_pages:
+#    - 'bugs/'
+#    - 'appendix/contribute/'
+#convert_iframe:
+#    - src: IFRAME SRC
+#      img: POSTER IMAGE URL
+#      text: ALTERNATE TEXT
+#    - src: ...
+#two_columns_level: 3
+#
+#render_js: true
+#headless_chrome_path: headless-chromium
+#
+#output_path: any-place/document.pdf
+#enabled_if_env: ENABLE_PDF_EXPORT
+#
+#debug_html: true
+#show_anchors: true
+#verbose: true
