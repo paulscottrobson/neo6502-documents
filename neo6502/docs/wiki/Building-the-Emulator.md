@@ -5,7 +5,7 @@
 ## Releases
 
 The release tarballs contain pre-built firmware, emulators for windows and *nixes, documentation, and examples/demos of BASIC, C, and assembly programs.
-* https://github.com/paulscottrobson/neo6502-firmware/releases
+* [Release is here](https://github.com/paulscottrobson/neo6502-firmware/releases)
 
 ## Compilation
 
@@ -24,7 +24,8 @@ All of the sources and dependencies are freely available.
 Most distros have the dependencies packaged.
 
 * Arch-based distros:  
-  _NOTE: '64tass' is in the AUR (https://aur.archlinux.org/packages/64tass)_.
+  _NOTE: '64tass' is in the AUR ([AUR Link](https://aur.archlinux.org/packages/64tass))_.
+  
   * *nix emulator:
     ```
     $ sudo pacman -S 64tass python-gitpython python-pillow sdl2 zip
@@ -33,7 +34,7 @@ Most distros have the dependencies packaged.
     ```
     $ sudo pacman -S 64tass mingw-w64-gcc python-gitpython python-pillow sdl2 zip
     ```
-
+  
 * Debian-based distros:
   * *nix emulator:
     ```
@@ -63,8 +64,3 @@ Build the mac emulator:
 ```
 $ make macos
 ```
-
-
-## Javascript emulator
-
-The Javascript version requires a recent version of emscripten - the ones in the Ubuntu and Arch repositories at the time of writing (Jan 2024) do not compile it correctly ; it requires downloading emscripten from github.

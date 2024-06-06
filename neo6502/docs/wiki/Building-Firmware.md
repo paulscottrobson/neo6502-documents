@@ -6,7 +6,7 @@
 
 The release tarballs contain pre-built firmware, emulators for windows and *nixes,
 documentation, and examples/demos of BASIC, C, and assembly programs.
-- https://github.com/paulscottrobson/neo6502-firmware/releases
+- [Release archives](https://github.com/paulscottrobson/neo6502-firmware/releases)
 
 ## Compilation
 
@@ -17,10 +17,10 @@ If not supplied, these will be downloaded automatically at build-time.
 These are not needed to build the emulators however.
 The automatic downloads, and the 'git' dependency may be avoided by collecting these sources manually.
 
-* pico-sdk:   https://github.com/raspberrypi/pico-sdk/releases
-* tinyusb:    https://github.com/hathach/tinyusb/releases
-* PicoDVI:    https://github.com/Wren6991/PicoDVI/archive/master.tar.gz
-* pico-fatfs: https://github.com/carlk3/no-OS-FatFS-SD-SPI-RPi-Pico/releases
+* pico-sdk:   [Download](https://github.com/raspberrypi/pico-sdk/releases)
+* tinyusb:    [Download](https://github.com/hathach/tinyusb/releases)
+* PicoDVI:    [Download](https://github.com/Wren6991/PicoDVI/archive/master.tar.gz)
+* pico-fatfs: [Download](https://github.com/carlk3/no-OS-FatFS-SD-SPI-RPi-Pico/releases)
 
 Then explode the tarballs and set the following variables in the environment:
 
@@ -55,43 +55,41 @@ Most distros have the dependencies packaged.
     ```
     $ sudo pacman -S arm-none-eabi-gcc arm-none-eabi-newlib cmake
     ```
+    
   * *nix emulator only:
     ```
     $ sudo pacman -S 64tass python-gitpython python-pillow sdl2 zip
     ```
+    
   * Windows emulator only:
     ```
     $ sudo pacman -S 64tass mingw-w64-gcc python-gitpython python-pillow sdl2 zip
     ```
-  * Documentation only:
-    ```
-    $ sudo pacman -S pandoc texlive-latex texlive-latexextra texlive-latexrecommended
-    ```
+    
   * Everything (firmware, all emulators, documentation, examples, demos, etc):
     ```
     $ sudo pacman -S 64tass arm-none-eabi-gcc arm-none-eabi-newlib cmake git mingw-w64-gcc python-gitpython python-pillow sdl2 zip
     ```
-
+  
 * Debian-based distros:
   * Firmware only:
     ```
     $ sudo apt install build-essential cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
     ```
+    
   * *nix emulator only:
     ```
     $ sudo apt install 64tass build-essential cmake libsdl2-dev python3 python3-pip zip
     ```
+    
   * Windows emulator only:
     ```
     $ sudo apt install 64tass build-essential cmake g++-mingw-w64-x86-64 libsdl2-dev mingw-w64 python3 python3-pip zip
     ```
-  * Documentation only:
-    ```
-    $ sudo apt install pandoc texlive-latex-base texlive-latex-extra texlive-latex-recommended
-    ```
+    
   * Everything (firmware, all emulators, documentation, examples, demos, etc):
     ```
-    $ sudo apt install 64tass build-essential cmake g++-mingw-w64-x86-64 gcc-arm-none-eabi git libnewlib-arm-none-eabi libsdl2-dev libstdc++-arm-none-eabi-newlib mingw-w64 pandoc python3 python3-pip texlive-latex-base texlive-latex-extra texlive-latex-recommended zip
+    $ sudo apt install 64tass build-essential cmake g++-mingw-w64-x86-64 gcc-arm-none-eabi git libnewlib-arm-none-eabi libsdl2-dev libstdc++-arm-none-eabi-newlib mingw-w64 python3 python3-pip zip
     ```
 
 ### Build
@@ -120,13 +118,7 @@ Build the mac emulator only:
 $ make macos
 ```
 
-Build the documentation only:
-
-```
-$ make docs
-```
-
-Build everything (firmware, all emulators, documentation, examples, demos, etc):
+Build everything (firmware, all emulators,  examples, demos, etc):
 
 ```
 $ make

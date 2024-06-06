@@ -10,9 +10,7 @@ Locales are available for the following
 * GB (Great Britain)
 * IT (Italy)
 
-To create a locale , base it on the files at [https://github.com/paulscottrobson/neo6502-firmware/tree/main/firmware/common/locale](https://github.com/paulscottrobson/neo6502-firmware/tree/main/firmware/common/locale)
-
-Either create it as a pull request or send it to me personally.
+To create a locale , base it on the files [here](https://github.com/llvm-mos/llvm-mos-sdk/) and either create it as a pull request or send it to me personally.
 
 The locale is set using the boot program autostart.bas or the locale "(name)" command
 

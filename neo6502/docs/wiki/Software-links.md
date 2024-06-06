@@ -36,6 +36,8 @@
 
 [Sokoban by zbyti](https://github.com/zbyti/pikoban)
 
+<img src="/wiki/assets/emulator_ingame-1717669511017-3.png" alt="emulator_ingame.png" style="zoom: 25%;" />
+
 [TaliFORTH repository by Sam Colwell](https://github.com/SamCoVT/TaliForth2/blob/master-64tass/platform/platform-neo6502.asm)
 
 [Tetris by Bocianu](https://gitlab.com/bocianu/neo-tetris)

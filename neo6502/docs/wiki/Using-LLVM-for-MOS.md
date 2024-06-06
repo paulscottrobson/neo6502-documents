@@ -4,7 +4,8 @@
 
 With the new version of llvm-mos, which natively supports neo6502, you can compile your C source code (even written for the CC65 compiler) without modifying the code. Pay attention to the warnings; llvm-mos is much stricter than CC65.
 
-Download here: https://github.com/llvm-mos/llvm-mos-sdk/
+[Download here](https://github.com/llvm-mos/llvm-mos-sdk/)
+
 Compile the source following the instruction inside the page
 
 You will find useful files in the directory: 

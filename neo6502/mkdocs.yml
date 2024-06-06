@@ -14,6 +14,10 @@ nav:
         - 'API Reference' : reference/api-listing.md
         - 'BASIC Reference' : reference/basic.md
     - Software: wiki/Software-links.md
+    - Programming:
+        - 'Mad Pascal': wiki/Mad‐Pascal-for-Neo6502.md
+        - 'LLVM MOS': wiki/Using-LLVM-for-MOS.md
+
     - Wiki: wiki/home.md
     
 plugins:
