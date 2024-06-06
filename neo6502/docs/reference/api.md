@@ -1,6 +1,6 @@
 # Neo6502 Messaging API
 
-The Neo6502 API is a messaging system. There are no methods to access the hardware directly. Messages are passed via the block of memory from $FF00 to $FF0F, as specified in the \"API Messaging Addresses\" table on the following page.
+The Neo6502 API is a messaging system. There are no methods to access the hardware directly. Messages are passed via the block of memory from $FF00 to $FF0F, as specified in the "API Messaging Addresses" table on the following page.
 
 The kernel include file documents/release/neo6502.inc specifies the beginning of this address range as the identifier ControlPort, along with the addresses of WaitMessage and SendMessage (described later), various related kernel jump vectors, and some helper functions.
 
@@ -8,21 +8,19 @@ The application include files examples/assembly/neo6502.asm.inc and examples/C/n
 
 API Commands/Functions are grouped by functionality. For example, Group 1 are system-related, and Group 2 are console-I/O-related. 
 
-Command/Function Parameters are notated in this document as Params[0] through Params[7], or as a list or range (eg: Params[1,2], Params[0..7]). Note that these are referring to a mapping to memory locations. The numbers represent offsets from the Parameters base address $FF04. Ie: the actual bytes are not necessarily all distinct \"parameters\" in the conventional sense. Depending on the routine, a logical parameter may be an individual byte, one or more bits of a byte interpreted as a composite or bit-field, or multiple adjacent bytes interpreted as 16 or 32 bit values. For example, the list Params[0,1] would indicate a single logical parameter, comprised of the two adjacent bytes $FF04 and $FF05. The range Params[4..7] would indicate a single logical parameter, spanning consecutive bytes between $FF08 and $FF0B.
+Command/Function Parameters are notated in this document as Params[0] through Params[7], or as a list or range (eg: Params[1,2], Params[0..7]). Note that these are referring to a mapping to memory locations. The numbers represent offsets from the Parameters base address $FF04. Ie: the actual bytes are not necessarily all distinct "parameters" in the conventional sense. Depending on the routine, a logical parameter may be an individual byte, one or more bits of a byte interpreted as a composite or bit-field, or multiple adjacent bytes interpreted as 16 or 32 bit values. For example, the list Params[0,1] would indicate a single logical parameter, comprised of the two adjacent bytes $FF04 and $FF05. The range Params[4..7] would indicate a single logical parameter, spanning consecutive bytes between $FF08 and $FF0B.
 
 **Note that strings referenced by Parameters are not ASCIIZ, but are length-prefixed.** 
 
 The first byte represents the length of the string (not counting itself). The string begins at the second byte. Consequently, strings must be 256 bytes or less (not counting the length header).
 
-\newpage
-
-**API Messaging Addresses**\
+### API Messaging Addresses
 
 | Address | Type       | Notes                                                        |
 | ------- | ---------- | ------------------------------------------------------------ |
 | FF00    | Group      | Group selector and status. Writing a non-zero value to this location triggers the routine specified in $FF01. The system will respond by setting the 'Error', 'Information', and 'Parameters' values appropriately. Upon completion, this memory location will be will cleared. |
 | FF01    | Function   | A command or function within the selected Group. For example, Group 1 Function 0 writes a value to the console; and Group 1 Function 1 reads the keyboard. |
-| FF02    | Error      | Return any error values, 0 = no error. \                     |
+| FF02    | Error      | Return any error values, 0 = no error.                       |
 | FF03:7  | Status     | Set (1) if the ESCape key has been pressed. This is not automatically reset. |
 | FF03:6  | *unused*   |                                                              |
 | FF03:5  | *unused*   |                                                              |
@@ -32,9 +30,6 @@ The first byte represents the length of the string (not counting itself). The st
 | FF03:1  | *unused*   |                                                              |
 | FF03:0  | *unused*   |                                                              |
 | FF04..  | Parameters | This memory block is notated in this document as Params[0] through Params[7], or as a composite list or range (eg: Params[1,2], Params[0..7]). Some Functions require Parameters in these locations and some return values in these locations; yet others do neither. |
-
-
-\newpage
 
 ## API Interfacing Protocol
 
@@ -48,8 +43,6 @@ following algorithm:
 3.  Setup the command code at $FF00. This triggers the routine; so mind that the Function code and Parameters are setup sanely prior. On a technical point, both implementations process the message immediately on write.
 
 4.  Optionally, wait for completion. Most commands (eg: writing to the console) do not require waiting, as any subsequent command will wait/queue as per step 1. Query commands (e.g. reading from the keyboard queue), return a value in a parameter. Programs must wait until the control address $FF00 has been cleared before reading the result of a query.
-
-\newpage
 
 There is a support function SendMessage, which in-lines the command and function. E.g.: this code from the Kernel:
 
@@ -73,13 +66,11 @@ The instructions above are equivalent to the following explicit steps:
 
 `Loop:`
 
-`lda DCommand ; load the result - non-zero until the routine\'s completion`
+`lda DCommand ; load the result - non-zero until the routine's completion`
 
 `bne Loop ; wait for API routine to complete`
 
 `lda DParameters ; read result (a key-code)`
-
-\newpage
 
 ## Mathematical Interface
 
@@ -100,15 +91,13 @@ Bytes 1-4 of the 'register' are the number, which can be either an integer (32 b
 
 Binary functions that use int and float combined (one is int and one is float) normally return a float.
 
-\newpage
-
 # Console Codes
 
 The following are console key codes. They can be printed in BASIC programs using chr$(n), and are also related to the character keys returned by inkey$(). The key() function uses physical key numbers. Some control codes do not have corresponding keyboard keys; and some console outputs are not yet implemented.
 
 Backspace (8), Tab (9), Enter/CR (13), Escape (27), and the printable characters (32..127) are the standard ASCII set. Other typical control keys (eg: Home and arrows) are mapped into the 0..31 range.
 
-**Console Key Codes - Non-Printable**\
+### Console Key Codes - Non-Printable
 
 | Code | Ctrl | Key         | Function                      |
 | ---- | :--- | ----------- | ----------------------------- |
@@ -129,9 +118,9 @@ Backspace (8), Tab (9), Enter/CR (13), Escape (27), and the printable characters
 | 23   | W    | Up          | Cursor Up                     |
 | 24   | X    |             | Cursor Color Inverse          |
 | 26   | Z    | Delete      | Delete Character Right        |
-| 27   | \[   | Escape      | Exit                          |
+| 27   | [    | Escape      | Exit                          |
 
-**Console Key Codes - Printable**\
+### Console Key Codes - Printable
 
 | Code  | Type      | Notes                     |
 | ----- | --------- | ------------------------- |
@@ -139,8 +128,6 @@ Backspace (8), Tab (9), Enter/CR (13), Escape (27), and the printable characters
 | 80-8F |           | Set Foreground Color      |
 | 90-9F |           | Set Background Color      |
 | C0-FF |           | User-definable Characters |
-
-\newpage
 
 # Graphics
 
@@ -156,15 +143,13 @@ The value in Params[3] is the draw extent (window) for the Draw Image command.
 
 The value in Params[4] is a bit-field of flags for the Draw Image command, which determine if the image will be inverted (flipped) horizontally or vertically: bit-0 for horizontal, bit-1 for vertical, reset (0) for normal, set (1) for inverted.
 
-For the \"Draw Rectangle\" and \"Draw Ellipse\" commands, the given order and position of the coordinates are not significant. To be precise, one is \"a corner\" and the other is \"the opposite corner\". For the \"Draw Ellipse\" command, these corners are referring to the bounding-box. The coordinates for an ellipse will lie outside of the ellipse itself.
-
-\newpage
+For the "Draw Rectangle" and "Draw Ellipse" commands, the given order and position of the coordinates are not significant. To be precise, one is "a corner" and the other is "the opposite corner". For the "Draw Ellipse" command, these corners are referring to the bounding-box. The coordinates for an ellipse will lie outside of the ellipse itself.
 
 ## Graphics Data
 
 Graphics data files are conventionally named ending in the .gfx suffix; though this is not mandatory. The format is quite simple.
 
-**Graphics Data Format**\
+#### Graphics Data Format
 
 | Offset | Data  | Notes                          |
 | ------ | ----- | ------------------------------ |
@@ -179,13 +164,9 @@ The layout of sprites graphics data is all of the 16x16 tiles, followed by all t
 
 Each byte specifies 2 pixels. The upper 4 bits represent the first pixel colour; and the lower 4 bits represent the second pixel colour. So tiles and 16x16 sprites occupy 16x16/2 bytes (128 bytes) each. Each 32x32 sprite occupies 32x32/2 bytes (512 bytes). Colour 0 is transparent for sprites (colour 9 should be used for a black pixel).
 
-The release package includes Python scripts for creating graphics files, which allow you to design graphics using your preferred editing tools (eg: Gimp, Inkscape, Krita, etc). There is an example in the crossdev/ directory, which demonstrates how to get started importing graphics into the Neo6502.
+The release package includes Python scripts for creating graphics files, which allow you to design graphics using your preferred editing tools (eg: Gimp, Inkscape, Krita, etc). There is an example in the crossdev directory, which demonstrates how to get started importing graphics into the Neo6502.
 
-\newpage
-
-## Pixel Colors
-
-**Pixel Colors**\
+## Pixel Colours
 
 | Pixel | Colour            |
 | ----- | ----------------- |
@@ -206,9 +187,6 @@ The release package includes Python scripts for creating graphics files, which a
 | 14    | Pink              |
 | 15    | Light Grey        |
 
-
-\newpage
-
 # Tile Maps
 
 A tile map occupies an area of user memory in 65C02. It is comprised of three meta-data bytes, followed by one byte for each tile, which is it's tile number in the graphic file (refer to the following section).
@@ -217,18 +195,16 @@ F0-FF are special reserved tile numbers, F0 is a transparent tile; and F1-FF are
 
 **Tile Maps Format**
 
-| Offset | Data   | Notes                                       |
-| ------ | ------ | ------------------------------------------- |
-| 0      | 1      | Graphics Data Format ID                     |
-| 1      | Width  | Width of tile-map (number of tiles)         |
-| 2      | Height | Height of tile-map (number of tiles)        |
-| 3..    | Raw    | Tiles graphics data (width \* height bytes) |
-
-\newpage
+| Offset | Data   | Notes                                      |
+| ------ | ------ | ------------------------------------------ |
+| 0      | 1      | Graphics Data Format ID                    |
+| 1      | Width  | Width of tile-map (number of tiles)        |
+| 2      | Height | Height of tile-map (number of tiles)       |
+| 3..    | Raw    | Tiles graphics data (width * height bytes) |
 
 # Sprites
 
-The Neo6502 graphics system has one sprite layer (z-plane) in the conventional sense. Technically, there is no \"sprite layer\", per-se. The system uses palette manipulation to create, what is in practice, a pair of 4-bit bit-planes. The sprite graphics are in the upper nibble, the background is in the lower nibble, and the background is drawn only if the sprite graphic layer is zero. It's this top nibble which is read by Function 5,36 \"Read Sprite Pixel\".
+The Neo6502 graphics system has one sprite layer (z-plane) in the conventional sense. Technically, there is no "sprite layer", per-se. The system uses palette manipulation to create, what is in practice, a pair of 4-bit bit-planes. The sprite graphics are in the upper nibble, the background is in the lower nibble, and the background is drawn only if the sprite graphic layer is zero. It's this top nibble which is read by Function 5,36 "Read Sprite Pixel".
 
 Function 6,2 sets or updates a sprite. These parameters (eg: the X and Y coordinates) cannot be set independently. To retain/reuse the current value of a parameter for a subsequent call, set each of the associated byte(s) to $80 (eg: $80,$80,$80,$80 for coordinates).
 
@@ -242,29 +218,23 @@ The value in Params[6] specifies a bit-field of flags, which determines if the g
 
 Params[7] specifies the anchor alignment. 
 
-\newpage
-
 ## Sprite Anchors
 
 The table below shows the valid anchor alignments for a sprite. The anchor position is the origin of the relative coordinate given. That is, coordinates 0,0 of the sprite will coincide with one of the positions shown in the table below. The default anchor alignment is zero (middle-center).
 
-**Sprite Anchors**\
+
 
 |      |      |      |
-| ---- | ---- | ---- |
-| 7    | 8    | 9    |
+| :--: | :--: | :--: |
+|  7   |  8   |  9   |
 |      |      |      |
+|  4   | 0/5  |  6   |
 |      |      |      |
-| 4    | 0/5  | 6    |
-|      |      |      |
-|      |      |      |
-| 1    | 2    | 3    |
+|  1   |  2   |  3   |
 
 To the right are two examples. Assume this is a 32x32 sprite. In the upper example, the anchor point is at 8, the top-center. Considering the origin at the bottom-left, this sprite is drawn at 16,32, the midpoint of the top of the square.
 
 In the lower example, the anchor point is at 0; and this sprite is drawn at 16,16 (the middle of the square). The anchor point should be something like the centre point. So for a walking character, this might be anchor point 2 (the bottom-center).
-
-\newpage
 
 # Sound
 
@@ -275,11 +245,9 @@ Frequency is in units of Hertz. Duration is in units of 100ths of a second. Slid
 **Queue Sound Parameters**
 
 |         |          |           |            |             |           |            |        |
-| ------- | -------- | --------- | ---------- | ----------- | --------- | ---------- | ------ |
-| FF04    | FF05     | FF06      | FF07       | FF08        | FF09      | FF0A       | FF0B   |
+| :-----: | -------- | :-------: | :--------: | :---------: | :-------: | :--------: | :----: |
+|  FF04   | FF05     |   FF06    |    FF07    |    FF08     |   FF09    |    FF0A    |  FF0B  |
 | Channel | Freq Low | Freq High | Length Low | Length High | Slide Low | Slide High | Target |
-
-\newpage
 
 # Sound Effects
 
@@ -311,9 +279,6 @@ Function 8,5 plays a sound effect immediately. These will be synthesised to the 
 | 21   | expl20     |
 | 22   | las30      |
 | 23   | las10      |
-
-
-\newpage
 
 # API Functions
 
