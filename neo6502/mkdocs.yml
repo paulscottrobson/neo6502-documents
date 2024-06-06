@@ -13,7 +13,9 @@ nav:
         - 'API Guide': reference/api.md
         - 'API Reference' : reference/api-listing.md
         - 'BASIC Reference' : reference/basic.md
-
+    - Software: wiki/Software-links.md
+    - Wiki: wiki/home.md
+    
 plugins:
     - with-pdf:      
         cover: true

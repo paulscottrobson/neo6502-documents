@@ -1,5 +1,6 @@
 serve: sync
-	cd neo6502 ; mkdocs serve -c
+	cd neo6502 ; mkdocs build -c
+	cd neo6502 ; mkdocs serve
 
 build: sync
 	cd neo6502 ; mkdocs build -c
