@@ -27,6 +27,10 @@ plugins:
         cover_subtitle: 'Paul Robson'
         author: Paul Robson and others
         copyright: Open Source
+
+extra_css:
+    - style.css        
+
 #
 #back_cover: true
 #custom_template_path: TEMPLATES PATH
