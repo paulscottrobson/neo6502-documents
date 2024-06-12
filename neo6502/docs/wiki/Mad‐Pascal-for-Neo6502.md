@@ -13,9 +13,11 @@ The following guide will help you set up a complete development environment, tai
 The first thing we will need is the latest version of the neo6502 emulator so that we can test our software on a development machine. Download it from the project's official GitHub: [https://github.com/paulscottrobson/neo6502-firmware/releases](https://github.com/paulscottrobson/neo6502-firmware/releases)
 
 All we need for now is the emulator executable. It is located in the root directory of the downloaded archive and is simply named `neo` (`neo.exe` for Windows). Let's place it in an easily accessible directory. For the purposes of our guide, let it be the following directory:
+
 | Windows | Linux  |
 | -- | -- |
 | `d:/neo6502/neo.exe` | `~/neo6502/neo` |
+
 
 Note that the downloaded archive also contains a `documents` directory, which includes a detailed description of the API functions provided by the firmware of our device. It will certainly come in handy during our adventures with programming on the neo6502, so it's worth keeping it nearby.
 
@@ -65,11 +67,14 @@ Let's try to compile it manually:
 | -- | -- |
 | `D:\Mad-Pascal\mp.exe hello.pas -target:neo -code:5000` | `~\Mad-Pascal\mp hello.pas -target:neo -code:5000` |
 
+
 The `-code:5000` option will cause our program code to be compiled at address $5000 (20480). This is an example value; you can compile the code to any location, just remember not to overwrite areas used by the firmware (you can find the memory map in the emulator archive in the `documents\basic.pdf` directory).
 As a result of the compilation, an intermediate assembler file `hello.a65` will be created in the project directory. In the next step, we will assemble this program into machine code, i.e., the target executable file.
+
 | Windows | Linux  |
 | -- | -- |
 | `D:\Mad-Assembler\mads.exe hello.a65 -x -i:D:\Mad-Pascal\base -o:hello.bin` | `~\Mad-Assembler\mads hello.a65 -x -i:~\Mad-Pascal\base -o:hello.bin` |
+
 
 The **-x** option causes potentially unused procedures to be removed during the assembly process, which is beneficial for us as the resulting file will be smaller. The path after the **-i** parameter indicates the directory with the base Mad-Pascal libraries, and the **-o** parameter allows you to specify the name of the output file, which should appear in the project directory after the assembly.
 
@@ -78,6 +83,7 @@ Let's try to run it in the emulator.
 | Windows | Linux  |
 | -- | -- |
 | `D:\neo6502\neo.exe hello.bin@5000 run@5000` | `~\neo6502\neo hello.bin@5000 run@5000` |
+
 
 Hooray! We have successfully written our first program in Mad-Pascal for neo6502!
 Notice that in the emulator call, we need to specify the compilation and run address consistent with the one provided during the initial compilation.
@@ -126,6 +132,7 @@ Let's try to compile and run our first program using the batch file.
 | -- | -- |
 | `build.bat hello`  | `./build.sh hello`  |
 
+
 And if everything went well, you should see the compilation process in the console window, and then the emulator window with our first program running.
 If something went wrong, make sure you have the correct paths in the batch file.
 
@@ -142,6 +149,7 @@ These libraries are available to you without any additional steps as they are al
 | [NEO6502KEYS](https://bocianu.gitlab.io/neo-mplibs/neo6502keys.html) | Library for reading keyboard state using HID codes. |
 | [NEO6502MATH](https://bocianu.gitlab.io/neo-mplibs/neo6502math.html) | Library for accelerating mathematical calculations and some other operations |
 | [NEO6502UEXT](https://bocianu.gitlab.io/neo-mplibs/neo6502uext.html) | Input/output interface function library for UEXT |
+
 
 Link to full documentation: [https://bocianu.gitlab.io/neo-mplibs/](https://bocianu.gitlab.io/neo-mplibs/)
 
