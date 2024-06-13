@@ -33,7 +33,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 
 
 
-## Unary Operators (General)
+## Arithmetic functions
 
 | Operator               | Notes                                                        |
 | ---------------------- | ------------------------------------------------------------ |
@@ -75,6 +75,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | peek(a)                | Read byte value at a                                         |
 | pin(n)                 | Return value on UEXT pin n if input, output latch value if output. |
 | point(x,y)             | Read the screen pixel at coordinates x,y. This is graphics data only. |
+| pow(a,b)               | Returns a raised to the power b ; the result is always floating point. |
 | rand(n)                | Random integer 0 { x { n (e.g. 0 to n-1)                     |
 | right$(a$,n)           | Rightmost n characters of a$                                 |
 | rnd(n)                 | Random number 0 { x { 1, ignores n.                          |

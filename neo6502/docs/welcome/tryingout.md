@@ -26,11 +26,13 @@ and type run to run it, like this.
 
 ![image-20240604171846977](assets/image-20240604171846977.png)
 
-### Using the editor
+### Using the screen editor
 
 Many people don't like line number programming. Even with an on screen editor - you can move the arrow keys up and make the 10 at the end of line 10 to 20, press [ENTER] and run it again.
 
 ![image-20240604172026322](assets/image-20240604172026322.png)
+
+### Using the BASIC Text Editor
 
 But the developers decided it would be better to have a proper editor. (It is possible to cross-develop in BASIC using the emulator or the serial port)
 
@@ -46,7 +48,7 @@ When you have finished press ESC to leave the editor and you can run it again. Y
 
 This sets function key F1 on the keyboard to type edit and press ENTER (character code 13).
 
-### Saving Loading and Catting
+### Saving Loading and "Cat"ting
 
 You can save your program with
 

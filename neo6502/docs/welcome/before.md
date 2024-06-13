@@ -4,7 +4,7 @@
 
 Besides the board itself, you will need various other devices to make the computer work. Most of these are relatively straightforward.
 
-Some however are <u>worth acquiring when you buy the board</u>. This is because some distributors, most in fact, charge a significant amount for postage for small orders, so if you order them later it will be more expensive.
+Some however are <u>**worth acquiring when you buy the board**</u>. This is because some distributors, most in fact, charge a significant amount for postage for small orders, so if you order them later it will be more expensive.
 
 ### USB Hub issues.
 
@@ -36,6 +36,12 @@ This is completely optional ; it is a small box which the Neo6502 board fits int
 
 ![BOX-Neo6502-R - Open Source Hardware Board](assets/BOX-NEO6502-B-1.jpg)
 
+### UEXT Devices
+
+Olimex produced UEXT modules which are listed [here](https://www.olimex.com/Products/Modules/), for the same reasons if you want one in particular it is worth ordering it at the same time. The majority of these devices are economically priced. The Basic and API have simple commands for interfacing with SPI, I2C and Serial Devices. 
+
+![UEXT](assets/UEXT.jpg)
+
 ## Common Devices
 
 ### Keyboard
@@ -48,7 +54,7 @@ The output is DVI through a HDMI connector. There is currently a discussion abou
 
 ### USB Key
 
-If you want to save programs then a USB key is required (It is possible to use SD Cards). For similar reasons to the USB Hub we believe, it requires a fast key. Initially I used "Amazon Cheapies" and none of them worked properly. I replaced this with a Sandisk USB key which was about £10 and it works fine.
+If you want to save programs then a USB key is required (It is possible to use SD Cards). For similar reasons to the USB Hub we believe, it requires a fast key. Initially I used "Amazon Cheapies" and none of them worked properly. I replaced this with a Sandisk USB 3.0 key which was about £10 and it works fine.
 
 ### Power Cable
 
@@ -62,4 +68,4 @@ Sound is provided on board by a simple buzzer. This is perfectly okay for beeps 
 
 The system does still support the use of SD Cards. This requires the Olimex UEXT SD Card adaptor.
 
-[Where to buy a Neo6502"](where.md)
+[Where to buy a Neo6502](where.md)

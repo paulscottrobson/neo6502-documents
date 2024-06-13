@@ -2,15 +2,17 @@
 
 *Missing suppliers who wish to be added contact me on Discord*
 
-### Olimex (Europe and worldwide)
+## Olimex (Europe and worldwide)
 
 ![www.olimex.com](https://www.olimex.com/_layout/images/logo.png)
 
-The home of the Neo6502 is Plovdiv in Bulgaria, and all the hardware can be bought from Olimex.
+The home of the Neo6502 is Plovdiv in Bulgaria, and all the hardware can be bought from Olimex, who deliver worldwide.
 
 [](https://www.olimex.com/Products/Retro-Computers/Neo6502/open-source-hardware)
 
+## Authorised Resellers
 
+The above resell locally on behalf of Olimex.
 
 ### Mouser (Worldwide)
 

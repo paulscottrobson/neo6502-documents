@@ -1,9 +1,6 @@
 # Where Next
 So you now have a working Neo6502. Here are some places to explore.
 
-## Wiki
-
-There is a wiki which various other features [here](https://github.com/paulscottrobson/neo6502-firmware/wiki) ; this is pretty basic but is currently under review for expansion.
 ## Discord
 There is an active discord where you can ask questions or whatever of the people involved in software and hardware, and ask for assistance. 
 

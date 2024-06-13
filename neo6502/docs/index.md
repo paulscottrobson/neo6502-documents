@@ -1,4 +1,4 @@
-# Neo6502 Specification
+# Welcome to the Olimex Neo6502 Documentation
 
 There is pdf copy of this documentation [here](https://neo6502.com/pdf/document.pdf)
 
