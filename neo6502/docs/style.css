@@ -1,0 +1,14 @@
+td {
+    padding-right: 1.2em;
+    border-bottom: 1px dotted #bbb;
+}
+td:first-child {
+    padding-left: .3em;
+}
+th {
+    padding-right: 1.2em;
+    border-bottom: 2px solid #bbb;
+}
+table {
+    margin-bottom: 1em;
+}
