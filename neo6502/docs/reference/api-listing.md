@@ -411,6 +411,14 @@ Parameter:0 := Register 1 compare Register2 : returns $FF, 0, 1 for less equal a
 
 Note: float comparison is approximate because of rounding.
 
+### Function 7 : Power
+
+Register1 := Register 1 to the power of Register2 (floating point result whatever)
+
+### Function 8 : Distance (counter-rectangle)
+
+Register1 := Square root of (Register1 * Register1) + (Register2 * Register2)
+
 ### Function 16 : Negate
 
 Register1 :=  -Register 1

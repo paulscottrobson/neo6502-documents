@@ -11,7 +11,9 @@ cd neo6502/site
 lftp -u "$USER","$PASSWORD" $HOST <<EOF
 set ssl:verify-certificate no
 set sftp:auto-confirm yes
-mirror -R 
+set net:timeout 1000
+set net:max-retries 0
+mirror -R -n --parallel=10
 exit
 EOF
 echo
