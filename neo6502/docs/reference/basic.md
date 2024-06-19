@@ -1,3 +1,5 @@
+
+
 # Basic Reference
 
 This is a reference for Neo6502's BASIC interpreter.
@@ -173,10 +175,6 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | while {expr} .. wend                    | Repeat code while expression is true                         |
 | who                                     | Display contributors list.                                   |
 
-
-
-
-
 ## The Inline Assembler
 
 The inline assembler works in a very similar way to that of the BBC Micro, except that it does not use the square brackets [ and ] to delimit assembler code. Assembler code is in normal BASIC programs.
@@ -317,8 +315,6 @@ In my experience of this the distance needs to be checked experimentally, as it 
 
 I think it's better than a simple box collision test, and more practical than a pixel based collision test which is very processor heavy.
 
-
-
 ## Sound Commands
 
 The Neo6502 has one sound channel by default, which is a beeper. This is channel 0.
@@ -362,44 +358,6 @@ The editor uses line numbers, so is *not* compatible with their use in programs.
 You shouldn't be using line numbers anyway !
 
 
-
-## Graphic Data
-
-The graphic date for a game is stored in what is named by default "graphics.gfx". This contains up to 256 graphics objects, in one of three types. One can have multiple graphics files.
-
-Each has 15 colours (for sprites, one is allocated to transparency) which are the same as the standard palette.
-
-#### 16x16 tiles (0-127, $00-$7F)
-
-These are 128 16x16 pixel solid tiles which can be horizontally flipped
-
-#### 16x16 sprites (128-191, $80-$BF)
-
-These are 64 16x16 sprites which can be horizontally and/or vertically flipped
-
-#### 32x32 sprites (192-255, $C0-$FF)
-
-These are 64 32x32 sprites which can be horizontally and/or vertically flipped
-
-These are created using two scripts, which are written in Python and require the installation of the Python Imaging Library, also known as PIL or Pillow.
-
-### Empty graphics files
-
-The script "createblanks.zip" creates three files, tile_16.png, sprite_16.png and sprite_32.png which are used for the three types of graphic.
-
-The sprite and tile files all look very similar. The palette is shown at the top (in later versions this will be configurable at this point), and some sample sprites are shown. Each box represents a 16x16 sprite. 32X32 sprite looks the same except the boxes are twice the size and there are half as many per row.
-
-Tiles are almost identical ; in this the background is black. The solid magenta (RGB 255,0,255) is used for transparency, this colour is not in the palette.
-
-Running createblanks.zip creates these three empty files. To protect against accidents it will not overwrite currently existing files, so if you want to start again then you have to delete the current ones.
-
-### Compiling graphics files
-
-There is a second script "makeimg.zip". This converts these three files into a file "graphics.gfx" which contains all the graphic data.
-
-This can be loaded into graphics image memory using the gload command, and the address 65535 e,g, ***gload "graphics.gfx"***
-
-There is an example of this process in the repository under basic/images which is used to create graphic for the sprite demonstation program
 
 
 
@@ -455,64 +413,4 @@ There is an example in the crossdev folder which gives some idea on how to get s
 
 
 
-## Load file format
 
-There is an extended file format which allows the loading of multiple files and optional execution. This is as follows
-
-| Offset | Contents | Notes                                                        |
-| ------ | -------- | ------------------------------------------------------------ |
-| 0      | $03      | Not a valid 65C02 opcode, nor can it be the first byte of a program. |
-| 1      | $4E      | ASCII 'N'                                                    |
-| 2      | $45      | ASCII 'E'                                                    |
-| 3      | $4F      | ASCII 'O'                                                    |
-| 4,5    | $00,$00  | Minimum major/minor version required to work.                |
-| 6,7    | $FF,$FF  | Execute address. To autorun a BASIC program set to $806      |
-| 8      | Control  | Control bits, currently only bit 7 is used, which indicates another block follows this one |
-| 9,10   | Load     | Load address (16 bits) $FFFF loads into graphic object memory, $FFFD loads to the BASIC workspace. |
-| 11,12  | Size     | Size to load in bytes.                                       |
-| 13...  | Comment  | ASCIIZ string which is a comment, filename, whatever         |
-| ....   | Data     | The data itself                                              |
-
-
-The block then repeats from 'Control' as many times as required.
-
-
-The Python application 'exec.zip' both constructs executable files, or displays them. This has the same execution format as the emulator, as listed below.
-
-python exec.zip -d{file} dumps a file
-
-python exec.zip {command list} -o{outputfile} builds a file
-
-- {file}@page Loads BASIC program
-- {file}@ffff Loads Graphics Object file
-- {file}@{hex address} Loads arbitrary file
-- run@{hex address} Sets the executable address
-- exec runs BASIC program
-
-for example, you can build a frogger executable with:
-
-python exec.zip {frogger.bas@page} {frogger.gfx@ffff} exec -ofrogger.neo
-
-Loading a file can be done by calling the kernel function LoadExtended (which does the autorun for you) or using the normal messaging system.
-
-If you handle it yourself bear in mind that on return, it is always possible that the code you write to call the execution routine may already have been overwritten by the loaded file.
-
-
-
-## Memory Map
-
-Note *all this is actually RAM* and functions as it, except for the command area ; writing non zero values into the Command byte may affect other locations in that 16 byte area or elsewhere (e.g. reading a file in).
-
-This block is however moveable.
-
-It is also possible that the top of free memory will move down from $FC00.
-
-| Addresses | Contents                                                     |
-| --------- | ------------------------------------------------------------ |
-| 0000-FBFF | Free memory. Not used for anything.                          |
-| FC00-FEFF | Kernel Image. Contains system functions and WozMon,  which it currently boots into. This is RAM like everything else. |
-| FFF0-FF0F | Command, Error, Parameters, Information space. This can be moved to accommodate other systems. |
-| FF10-FFF9 | Vectors to Kernel routines, not actually mandatory either.   |
-| FFFA-FFFF | 65C02 Vectors for NMI, IRQ and Reset. This one is mandatory. |
-
- 

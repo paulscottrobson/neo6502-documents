@@ -166,42 +166,6 @@ Each byte specifies 2 pixels. The upper 4 bits represent the first pixel colour;
 
 The release package includes Python scripts for creating graphics files, which allow you to design graphics using your preferred editing tools (eg: Gimp, Inkscape, Krita, etc). There is an example in the crossdev directory, which demonstrates how to get started importing graphics into the Neo6502.
 
-## Pixel Colours
-
-| Pixel | Colour            |
-| ----- | ----------------- |
-| 0     | Black/Transparent |
-| 1     | Red               |
-| 2     | Green             |
-| 3     | Yellow            |
-| 4     | Blue              |
-| 5     | Magenta           |
-| 6     | Cyan              |
-| 7     | White             |
-| 8     | Black             |
-| 9     | Dark Grey         |
-| 10    | Dark Green        |
-| 11    | Orange            |
-| 12    | Dark Orange       |
-| 13    | Brown             |
-| 14    | Pink              |
-| 15    | Light Grey        |
-
-# Tile Maps
-
-A tile map occupies an area of user memory in 65C02. It is comprised of three meta-data bytes, followed by one byte for each tile, which is it's tile number in the graphic file (refer to the following section).
-
-F0-FF are special reserved tile numbers, F0 is a transparent tile; and F1-FF are a solid tile in the current palette colour. The format is very simple.
-
-**Tile Maps Format**
-
-| Offset | Data   | Notes                                      |
-| ------ | ------ | ------------------------------------------ |
-| 0      | 1      | Graphics Data Format ID                    |
-| 1      | Width  | Width of tile-map (number of tiles)        |
-| 2      | Height | Height of tile-map (number of tiles)       |
-| 3..    | Raw    | Tiles graphics data (width * height bytes) |
-
 # Sprites
 
 The Neo6502 graphics system has one sprite layer (z-plane) in the conventional sense. Technically, there is no "sprite layer", per-se. The system uses palette manipulation to create, what is in practice, a pair of 4-bit bit-planes. The sprite graphics are in the upper nibble, the background is in the lower nibble, and the background is drawn only if the sprite graphic layer is zero. It's this top nibble which is read by Function 5,36 "Read Sprite Pixel".

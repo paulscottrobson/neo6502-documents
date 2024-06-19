@@ -13,6 +13,9 @@ nav:
         - 'API Guide': reference/api.md
         - 'API Reference' : reference/api-listing.md
         - 'BASIC Reference' : reference/basic.md
+        - 'File Formats' : reference/formats.md
+        - 'Graphics Objects' : reference/graphics.md
+        - 'Memory Map' : reference/memory.md        
     - Software: wiki/Software-links.md
     - Programming:
         - 'Mad Pascal': wiki/Mad‐Pascal-for-Neo6502.md
