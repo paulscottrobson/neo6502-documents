@@ -108,6 +108,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | call {name}(p1,p2,p3)                   | Call named procedure with optional parameters.               |
 | cat [{pattern}]                         | Show contents of current directory, can take an optional string which only displays filenames containing those characters, so cat "ac" only displays files with the sequence ac in them. |
 | clear [{address}]                       | Clear out stack, strings, reset all variables. If an address is provided then memory above that will not be touched by BASIC. Note because this resets the stack, it cannot be done in a loop, subroutine or procedure -- they will be forgotten. Also clears the sprites and the sprite layer. |
+| close [handle]                          | Close a file by handle. If the handle is not provided, close all files. |
 | cls                                     | Clear the graphics screen to current background colour. This does not clear sprites. |
 | cursor {x},{y}                          | Set the text cursor position                                 |
 | data {const},....                       | DATA statement. For syntactic consistency, strings must be enclosed in quote marks e.g. data |
@@ -128,6 +129,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | if {expr}: .. else .. endif             | Extended multiline if, without THEN. The else clause is optional. |
 | ink fgr[,bgr]                           | Set the ink foreground and optionally background for the console. |
 | input {stuff}                           | Input has an identical syntax and behaviour to Print except that variables are entered via the keyboard rather than printed. |
+| input #{channel},{var},{var}            | Reads a sequence of variables from the open file.            |
 | ireceive {d},{a},{s}                    | Send or receive bytes starting at a, count s to or from device d. |
 | itransmit {d},{a},{s}                   |                                                              |
 | isend {device},{data}                   | Send data to i2c {device} ; this is comma seperated data, numbers or strings. If a semicolon is used as a seperator e.g. 4137; then the constant is sent as a 16 bit value. |
@@ -147,12 +149,14 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | next                                    | Ends for loop. No variable parameter                         |
 | old                                     | Undoes a new. This can fail depending on what has been done since the 'new'. |
 | on error {code}                         | Install an error handler that is called when an error occurs. Effectively this is doing a GOTO that code, so recovery is dependent on what you actually |
+| open input\|output [channel],[file]     | Open a file for input or output on the given channel, using the given file name. Output erases the current file. This gives an error if the file does not exist ; rather than trap this error it is recommended to use the exists() function if you think the file may not be present. |
 | palette c,r,g,b                         | Set colour c to r,g,b values -- these are all 0-255 however it is actually 3:2:3 colour, so they will be approximations. |
 | palette clear                           | Reset palette to default                                     |
 | pin {pin},{value}                       | Set UEXT {pin} to given value.                               |
 | pin {pin} INPUT                         | output                                                       |
 | poke {addr},{data}                      | Write byte to address                                        |
 | print {stuff}                           | Print strings and numbers, standard format - , is used for   |
+| print #{channel},{expr},{expr}          | Writes a sequence of expressions to the open file.           |
 | proc {name>([ref] p1,p2,...) .. endproc | Delimits procedures, optional parameters, must match call. Parameters can be defined as reference parameters and will return values. Parameters cannot be arrays. |
 | read {var},...                          | Read variables from data statements. Types must match those in data statements. |
 | renumber [{start}]                      | Renumber the program from start, or from 1000 by default. This does *not* handle GOTO and GOSUB. Use those, you are on your own. |
