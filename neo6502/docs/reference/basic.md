@@ -49,6 +49,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | err                    | Current error number                                         |
 | erl                    | Current error line number                                    |
 | event(v,r)             | event takes an integer variable and a fire rate (r) in 1/100 s, and uses the integer variable to return -1 at that rate. If the value in 'v' is zero, it resets (if you pause say), if the value in v is -1 the timer will not fire -- to unfreeze, set it to zero and it will resynchronise. |
+| exists(file$)          | Returns true (-1) if the file exists, false (0) otherwise    |
 | exp(n)                 | e to the power n                                             |
 | false                  | Return constant 0, improves boolean readability              |
 | havemouse()            | Return non zero if a mouse is connected.                     |
@@ -410,7 +411,6 @@ The following commands are supported.
 
 
 There is an example in the crossdev folder which gives some idea on how to get started.
-
 
 
 

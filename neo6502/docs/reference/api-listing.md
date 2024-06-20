@@ -198,7 +198,7 @@ Modes 0 to 2 will fail if the file does not already exist. If the channel is alr
 
 Closes a particular channel. On input:
 
-Parameter:0 contains the file channel to close.
+Parameter:0 contains the file channel to close. If this is $FF this closes all open files.
 
 ### Function 6 : File Seek
 
