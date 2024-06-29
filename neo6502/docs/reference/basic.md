@@ -147,7 +147,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | mouse show                              | hide                                                         |
 | mouse TO {x},{y}                        | Position mouse cursor                                        |
 | new                                     | Erase Program                                                |
-| next                                    | Ends for loop. No variable parameter                         |
+| next {variable}                         | Ends for loop. The variable parameter is optional. You cannot unwind nested FOR/NEXTs , next must operate in order. |
 | old                                     | Undoes a new. This can fail depending on what has been done since the 'new'. |
 | on error {code}                         | Install an error handler that is called when an error occurs. Effectively this is doing a GOTO that code, so recovery is dependent on what you actually |
 | open input\|output [channel],[file]     | Open a file for input or output on the given channel, using the given file name. Output erases the current file. This gives an error if the file does not exist ; rather than trap this error it is recommended to use the exists() function if you think the file may not be present. |
