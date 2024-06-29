@@ -162,6 +162,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | renumber [{start}]                      | Renumber the program from start, or from 1000 by default. This does *not* handle GOTO and GOSUB. Use those, you are on your own. |
 | repeat .. until {expr}                  | Execute code until {expr} is true                            |
 | restore                                 | Restore data pointer to program start                        |
+| restore {line}                          | Restore data pointer to line number                          |
 | return                                  | Return from subroutine called with gosub.                    |
 | run                                     | Run Program                                                  |
 | run "{program}"                         | Load & Run program.                                          |

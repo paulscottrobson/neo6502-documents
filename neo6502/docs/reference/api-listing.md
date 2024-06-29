@@ -137,6 +137,14 @@ Toggles the cursor colour between normal and inverse (ie: swaps FG and BG colors
 
 Internal helper.
 
+### Function 18 : Read Ink/Paper Colours
+
+Read the ink/paper colours into Param[0] and Param[1]
+
+### Function 19 : Show/Hide Cursor Reversing
+
+Set the cursor visibility to Param[0]. This is reset by clearing the screen.
+
 
 
 
@@ -418,6 +426,10 @@ Register1 := Register 1 to the power of Register2 (floating point result whateve
 ### Function 8 : Distance (counter-rectangle)
 
 Register1 := Square root of (Register1 * Register1) + (Register2 * Register2)
+
+### Function 9 : Direction (arctangent2)
+
+Register1 := arctangent2(Register 1,Register 2) - angle in degrees/radians
 
 ### Function 16 : Negate
 

@@ -1,11 +1,13 @@
-serve: sync
+.any:
+
+serve: .any sync
 	cd neo6502 ; mkdocs build -c
 	cd neo6502 ; mkdocs serve
 
-build: sync
+build: .any sync
 	cd neo6502 ; mkdocs build -c
 
-sync:
+sync: .any
 	cp ../neo6502-firmware/bin/api-listing.md neo6502/docs/reference	
 
 upload : sync build
