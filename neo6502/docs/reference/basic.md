@@ -43,6 +43,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | analog(n)              | Read voltage level on pin n -- returns a value from 0 to 4095 |
 | asc(s$)                | Return ASCII value of first character or zero for empty string |
 | atan(n)                | Arctangent of n in degrees                                   |
+| atan2(y,x)             | Arctangent 2 calculation, dy / dx => angle                   |
 | chr$(n)                | Convert ASCII to string                                      |
 | cos(n)                 | Cosine of n, n Is in degrees.                                |
 | deek(a)                | Read word value at a                                         |

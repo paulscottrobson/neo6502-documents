@@ -427,7 +427,7 @@ Register1 := Register 1 to the power of Register2 (floating point result whateve
 
 Register1 := Square root of (Register1 * Register1) + (Register2 * Register2)
 
-### Function 9 : Direction (arctangent2)
+### Function 9 : Angle calculation (arctangent2)
 
 Register1 := arctangent2(Register 1,Register 2) - angle in degrees/radians
 
