@@ -18,7 +18,9 @@ nav:
         - 'Memory Map' : reference/memory.md        
     - Software: wiki/Software-links.md
     - Programming:
+        - 'Assembler' : wiki/Using-Assembler.md
         - 'Mad Pascal': wiki/Mad‐Pascal-for-Neo6502.md
+        - 'CC65 Sample' : wiki/Using-CC65.md
         - 'LLVM MOS': wiki/Using-LLVM-for-MOS.md
 
     - Wiki: wiki/home.md

@@ -1,8 +1,7 @@
 .any:
 
-serve: .any sync
-	cd neo6502 ; mkdocs build -c
-	cd neo6502 ; mkdocs serve
+server: .any sync
+	cd neo6502 ; mkdocs serve -c
 
 build: .any sync
 	cd neo6502 ; mkdocs build -c

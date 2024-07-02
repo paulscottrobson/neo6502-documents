@@ -12,10 +12,6 @@
 
 ![kulki](assets/kulki.webp)
 
-[Mad PASCAL Repository by Tomasz Biela](https://github.com/tebe6502/Mad-Pascal)
-
-
-
 [Mapper tilemap creator by Giovanni Pozzobon](https://github.com/giovannipozzobon/mapper)
 
 ![tilemap](assets/tilemap.webp)
@@ -39,6 +35,10 @@
 [Sokoban by zbyti](https://github.com/zbyti/pikoban)
 
 ![sokoban](assets/sokoban.png)
+
+[Swimo by Bocianu](https://gitlab.com/bocianu/neo-swimo)
+
+![Swimo](assets/image-20240702191244123.png)
 
 [TaliFORTH repository by Sam Colwell](https://github.com/SamCoVT/TaliForth2/blob/master-64tass/platform/platform-neo6502.asm)
 

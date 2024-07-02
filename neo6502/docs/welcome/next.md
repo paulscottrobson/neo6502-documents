@@ -17,6 +17,6 @@ Other software is available, linked from the Wiki, now including a Tile map and 
 ## Facebook
 There is a facebook group  [here](https://www.facebook.com/groups/745798620676673)
 ## Assembler, BASIC , C and Pascal examples
-Under examples are a variety of sample programs some of which are full programs, some demonstrate specific features of BASIC or the API. The .bsc files are text versions of the BASIC files.
+Under "examples" are a variety of sample programs some of which are full programs, some demonstrate specific features of BASIC or the API. The .bsc files are text versions of the BASIC files.
 ## The Youtube series
-There is a 7 part youtube video series of about 30 minutes in total here [](https://www.youtube.com/watch?v=FbcAHRVTqpE) which walks through programming a simple game in BASIC using cross development and external tools. Much of it is applicable to C and Pascal which uses the same API - many BASIC commands are simple wrappers round the API functions.
+There is a [7 part youtube video series of about 30 minutes](https://www.youtube.com/watch?v=FbcAHRVTqpE&list=PLP0Pow806SUMAOoiHSks_xqrspu9pPwnN) which walks through programming a simple game in BASIC using cross development and external tools. Much of it is applicable to C and Pascal which uses the same API - many BASIC commands are simple wrappers round the API functions.

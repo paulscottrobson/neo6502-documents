@@ -49,3 +49,5 @@ The following are available as command line options :+1:
 
 **keys** disables the debugger keys
 
+**(filename).neo** loads and runs a .neo file
+
