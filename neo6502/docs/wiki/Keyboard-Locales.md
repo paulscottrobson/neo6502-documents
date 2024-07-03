@@ -9,6 +9,8 @@ Locales are available for the following
 * FI (Finland)
 * GB (Great Britain)
 * IT (Italy)
+* CH (Switzerland)
+* SW (Sweden)
 
 To create a locale , base it on the files [here](https://github.com/llvm-mos/llvm-mos-sdk/) and either create it as a pull request or send it to me personally.
 
