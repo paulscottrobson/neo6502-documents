@@ -51,3 +51,4 @@ The following are available as command line options :+1:
 
 **(filename).neo** loads and runs a .neo file
 
+**scale=n** sets the emulator display scale from 1-4
