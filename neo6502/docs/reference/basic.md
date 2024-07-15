@@ -413,6 +413,7 @@ The following commands are supported.
 | pendown {n}        | Start drawing in given colour                                |
 | turtle home        | Reset turtle to home position                                |
 | turtle hide        | Hide the turtle                                              |
+| turtle show        | Show the turtle                                              |
 | turtle fast        | The turtle is deliberately slowed to give it an animated feel so you can see the drawing, this is because it's primary purpose is educational. This makes it go full speed. |
 
 
