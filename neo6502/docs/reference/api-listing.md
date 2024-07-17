@@ -716,7 +716,7 @@ Turn the turtle right by Parameter:0,1 degrees. Show if hidden. To turn left, tu
 
 ### Function 3 : Turtle Move
 
-Move the turtle forward by Parameter:0,1 degrees, drawing in colour Parameter:2, pen down flag in Parameter:3. Show if hidden.
+Move the turtle forward by Parameter:0,1 degrees, drawing in colour Parameter:2 if Parameter:3 is non-zero.
 
 ### Function 4 : Turtle Hide
 
@@ -725,6 +725,10 @@ Hide the turtle.
 ### Function 5 : Turtle Home
 
 Move the turtle to the home position (in the center, pointing upward).
+
+### Function 6 : Turtle Show
+
+Show the turtle.
 
 
 

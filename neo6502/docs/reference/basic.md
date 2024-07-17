@@ -286,7 +286,7 @@ As with Graphics these are not all required. It only changes what you specify no
 
 SPRITE can also take the single command CLEAR ; this resets all sprites and removes them from the display
 
-Sprite 0 is used for the turtle sprite, so if the turtle is turned on, then it will adjust its graphic, size to reflect the turtle position. If turtle graphics are not used, it can be used like any other.
+Sprite 127 is used for the turtle sprite, so if the turtle is turned on, then it will adjust its graphic, size to reflect the turtle position. If turtle graphics are not used, it can be used like any other.
 
 ### Implementation notes
 
@@ -404,17 +404,18 @@ The Neo6502 has a built in turtle graphics system. This uses sprite $7F as the t
 
 The following commands are supported.
 
-| Command            | Purpose                                                      |
-| ------------------ | ------------------------------------------------------------ |
-| forward {n}        | Move turtle forward n (pixel distance)                       |
-| left {n} right {n} | Rotate turtle at current position                            |
-| penup              | Stop drawing                                                 |
-| pendown            | Start drawing                                                |
-| pendown {n}        | Start drawing in given colour                                |
-| turtle home        | Reset turtle to home position                                |
-| turtle hide        | Hide the turtle                                              |
-| turtle show        | Show the turtle                                              |
-| turtle fast        | The turtle is deliberately slowed to give it an animated feel so you can see the drawing, this is because it's primary purpose is educational. This makes it go full speed. |
+| Command     | Purpose                                                      |
+| ----------- | ------------------------------------------------------------ |
+| forward {n} | Move turtle forward n (pixel distance)                       |
+| left {n}    | Rotate turtle at current position                            |
+| right {n}   |                                                              |
+| penup       | Does not draw as the turtle moves                            |
+| pendown     | Draw as the turtle moves in the current colour               |
+| pendown {n} | Draw as the turtle moves in colour {n}                       |
+| turtle home | Reset turtle to home position, facing up the screen.         |
+| turtle hide | Hide the turtle                                              |
+| turtle show | Show the turtle                                              |
+| turtle fast | The turtle is deliberately slowed to give it an animated feel so you can see the drawing, this is because it's primary purpose is educational. This makes it go full speed. |
 
 
 There is an example in the crossdev folder which gives some idea on how to get started.
