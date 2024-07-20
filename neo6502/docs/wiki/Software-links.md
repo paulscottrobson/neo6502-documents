@@ -54,6 +54,12 @@ The classic puzzle game
 
 ![sokoban](assets/sokoban.png)
 
+[Solitaire Suite by Wojciech Bocianksi](https://gitlab.com/bocianu/neo-solsuite)
+
+A suite of Solitaire games
+
+<img src="assets/image.png" alt="img" style="zoom: 33%;" />
+
 [Swimo by Wojciech Bocianski](https://gitlab.com/bocianu/neo-swimo)
 
 A cellular automata type simulator.
