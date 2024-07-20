@@ -58,7 +58,7 @@ The classic puzzle game
 
 A suite of Solitaire games
 
-<img src="assets/image.png" alt="img" style="zoom: 33%;" />
+![image](assets/image-1721478438902-3.png)
 
 [Swimo by Wojciech Bocianski](https://gitlab.com/bocianu/neo-swimo)
 
