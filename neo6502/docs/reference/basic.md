@@ -47,6 +47,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | chr$(n)                | Convert ASCII to string                                      |
 | cos(n)                 | Cosine of n, n Is in degrees.                                |
 | deek(a)                | Read word value at a                                         |
+| eof(f)                 | Returns non-zero value if at end of file f.                  |
 | err                    | Current error number                                         |
 | erl                    | Current error line number                                    |
 | event(v,r)             | event takes an integer variable and a fire rate (r) in 1/100 s, and uses the integer variable to return -1 at that rate. If the value in 'v' is zero, it resets (if you pause say), if the value in v is -1 the timer will not fire -- to unfreeze, set it to zero and it will resynchronise. |
