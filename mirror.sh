@@ -13,7 +13,7 @@ set ssl:verify-certificate no
 set sftp:auto-confirm yes
 set net:timeout 1000
 set net:max-retries 0
-mirror -R 
+mirror -R --continue --parallel=5
 exit
 EOF
 echo
