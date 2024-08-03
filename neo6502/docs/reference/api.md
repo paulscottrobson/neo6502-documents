@@ -12,7 +12,7 @@ Command/Function Parameters are notated in this document as Params[0] through Pa
 
 **Note that strings referenced by Parameters are not ASCIIZ, but are length-prefixed.** 
 
-The first byte represents the length of the string (not counting itself). The string begins at the second byte. Consequently, strings must be 256 bytes or less (not counting the length header).
+The first byte represents the length of the string (not counting itself). The string begins at the second byte. Consequently, strings must be 255 bytes or less (not counting the length header).
 
 ### API Messaging Addresses
 

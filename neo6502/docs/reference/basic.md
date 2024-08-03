@@ -104,7 +104,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 
 | Command                                 | Notes                                                        |
 | --------------------------------------- | ------------------------------------------------------------ |
-| ' {string}                              | Comment. This is a string for syntactic consistency. The tokeniser will process a line that doesn't have speech marks as this is not common. REM this is a |
+| ' {string}                              | Comment. This is a string for syntactic consistency. The tokeniser will process a line that doesn't have speech marks as this is not common, so you can type in ' hello world and it will be represented as ' "hello world" in code. |
 | assert {expr}[,{msg}]                   | Error generated if {expr} is zero, with optional message.    |
 | call {name}(p1,p2,p3)                   | Call named procedure with optional parameters.               |
 | cat [{pattern}]                         | Show contents of current directory, can take an optional string which only displays filenames containing those characters, so cat "ac" only displays files with the sequence ac in them. |

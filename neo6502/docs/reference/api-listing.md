@@ -50,6 +50,10 @@ Do a MOS command (a '* command') these are specified in the Wiki as they will be
 
 Writes a single character to the debug port (the UART on the Pico, or stderr on the emulator). This allows maximum flexibility.
 
+### Function 11 : Return Version Information
+
+Reads the current version Major.Minor.Patch into Parameters:0..2 These values are guaranteed to be in the range 0.255
+
 
 
 
@@ -375,6 +379,18 @@ Parameters:0,1 points to the length-prefixed filename;
 Parameter:2 is the attribute bitfield. (See Stat File for details.)
 
 The directory bit cannot be changed. Obviously.
+
+### Function 22 : Check End of File.
+
+Returns the end of file status of an opened file. On input:
+
+Parameter:0 contains the file channel to operate on.
+
+On output:
+
+Parameter:0 is non-zero if the file is at the end of the file.
+
+This call should be used on open files and may return an error if the file is closed.
 
 ### Function 32 : List Filtered
 
