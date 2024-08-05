@@ -132,6 +132,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | ink fgr[,bgr]                           | Set the ink foreground and optionally background for the console. |
 | input {stuff}                           | Input has an identical syntax and behaviour to Print except that variables are entered via the keyboard rather than printed. |
 | input #{channel},{var},{var}            | Reads a sequence of variables from the open file.            |
+| input line #{channel}.{var}.{var}       | Reads text from an ASCII file. This is processed from the source, primarily due to Windows' usage of CR/LF. So this at current, by default, ignores all characters before space, except for LF (10) which marks the end of line, and TAB (9) which is converted into a space. All variables are strings |
 | ireceive {d},{a},{s}                    | Send or receive bytes starting at a, count s to or from device d. |
 | itransmit {d},{a},{s}                   |                                                              |
 | isend {device},{data}                   | Send data to i2c {device} ; this is comma seperated data, numbers or strings. If a semicolon is used as a seperator e.g. 4137; then the constant is sent as a 16 bit value. |
@@ -159,6 +160,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | poke {addr},{data}                      | Write byte to address                                        |
 | print {stuff}                           | Print strings and numbers, standard format - , is used for   |
 | print #{channel},{expr},{expr}          | Writes a sequence of expressions to the open file.           |
+| print line #{channel}.{var}.{var}       | Prints a line to an output channel as an ASCII file, in LF format (e.g. lines are seperated by character code 10). This can be mixed with the above format *but* the sequence has to be the same ; you ann't write a string using print line and read it back with input and vice versa. All variables must be strings. |
 | proc {name>([ref] p1,p2,...) .. endproc | Delimits procedures, optional parameters, must match call. Parameters can be defined as reference parameters and will return values. Parameters cannot be arrays. |
 | read {var},...                          | Read variables from data statements. Types must match those in data statements. |
 | renumber [{start}]                      | Renumber the program from start, or from 1000 by default. This does *not* handle GOTO and GOSUB. Use those, you are on your own. |
