@@ -222,7 +222,7 @@ Function 8,7 is an extended version of this ; function 8.4 still works, but 8,7 
 
 # Sound Effects
 
-Function 8,5 plays a sound effect immediately. These will be synthesised to the best ability of the available hardware. These are predefined as:
+Function 8,5 plays a sound effect immediately. These will be synthesised to the best ability of the available hardware, so the actual sound may vary slightly. These are predefined as:
 
 | ID   | Sound      |
 | ---- | ---------- |
