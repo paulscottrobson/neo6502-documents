@@ -213,6 +213,13 @@ Frequency is in units of Hertz. Duration is in units of 100ths of a second. Slid
 |  FF04   | FF05     |   FF06    |    FF07    |    FF08     |   FF09    |    FF0A    |  FF0B  |
 | Channel | Freq Low | Freq High | Length Low | Length High | Slide Low | Slide High | Target |
 
+Function 8,7 is an extended version of this ; function 8.4 still works, but 8,7 allows access to the extended multi channel sound functionality. Sound types are, at the time of writing, 0 (square wave) and 1 (random noise). There are four channels minimum, but the function 8,8 allows you to read the number of supported channels.
+
+|         |          |           |            |             |           |            |            |              |
+| :-----: | :------: | --------- | ---------- | ----------- | --------- | ---------- | :--------: | ------------ |
+|  FF04   |   FF05   | FF06      | FF07       | FF08        | FF09      | FF0A       |    FF0B    | FF0C         |
+| Channel | Freq Low | Freq High | Length Low | Length High | Slide Low | Slide High | Sound Type | Sound Volume |
+
 # Sound Effects
 
 Function 8,5 plays a sound effect immediately. These will be synthesised to the best ability of the available hardware. These are predefined as:

@@ -713,6 +713,18 @@ Play the sound effect specified in Parameter:1 on the channel specified in Param
 
 Deposit in Parameter:0 the number of notes outstanding before silence in the queue of the channel specified in Parameter:0, including the current playing sound, if any.
 
+### Function 7 : Queue Sound Extended
+
+Queue a sound. Refer to Section \#\ref{sound} "Sound" for details. This is an extension of call 4 to support different waveform types and volumes. The source parameter is no longer used.
+
+The parameters are : Channel, Frequency Low, Frequency High, Duration Low, Duration High, Slide Low, Slide High, Sound Type and Sound Volume. All these
+
+are 16 bit parameters except the sound type and volume, and the channel number.
+
+### Function 8 : Get Channel Count
+
+This returns the number of channels in Parameter #0
+
 
 
 
