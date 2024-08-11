@@ -16,7 +16,8 @@ There is pdf copy of this documentation [here](https://neo6502.com/pdf/document.
 - Turtle Graphics
 - Blitter for high speed graphics
 - UEXT interface to access a wide range of hardware add ons.
-- 1 channel "beeper" sound with SFX library (to be replaced by AY-3-8910 Emulation)
+- 4 channels of square wave or white noise sound
+- Predefined set of sound effects.
 - Storage USB Key (optionally can use SD Card)
 - Fast structured BASIC with hardware support and inline assembler.
 - BASIC can be edited on screen, or using a text editor.
