@@ -327,9 +327,7 @@ I think it's better than a simple box collision test, and more practical than a 
 
 ## Sound Commands
 
-The Neo6502 has one sound channel by default, which is a beeper. This is channel 0.
-
-### Sound
+The Neo6502 has four sound channels, 0-3 which can generate a square wave or white noise sounds.
 
 The main sound command is called "sound" and has the following forms.
 
@@ -346,6 +344,8 @@ Resets a single channel ; silences it, and empties its queue
 Queues a note on the given channel of the given frequency (in Hz) and time (in centiseconds). These will be played in the background as other notes finish so you can 'queue up' an entire phrase and let it play by itself. The slide value adds that much to the frequency every centisecond allowing some additional effects (note, done in 50Hz ticks)
 
 A mixture of the two syntaxes SOUND 0 CLEAR 440,200 is now supported.
+
+To use the white noise feature use the keyword "noise" instead of sound.
 
 ### Sfx
 
