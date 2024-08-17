@@ -6,22 +6,22 @@
 
 | Pixel | Colour            |
 | ----- | ----------------- |
-| 0     | Black/Transparent |
-| 1     | Red               |
-| 2     | Green             |
-| 3     | Yellow            |
-| 4     | Blue              |
-| 5     | Magenta           |
-| 6     | Cyan              |
-| 7     | White             |
-| 8     | Black             |
-| 9     | Dark Grey         |
-| 10    | Dark Green        |
-| 11    | Orange            |
-| 12    | Dark Orange       |
-| 13    | Brown             |
-| 14    | Pink              |
-| 15    | Light Grey        |
+| <div class='cbox _c0'>0</div>    | Black/Transparent |
+| <div class='cbox _c1'>1</div>    | Red               |
+| <div class='cbox _c2'>2</div>    | Green             |
+| <div class='cbox _c3'>3</div>    | Yellow            |
+| <div class='cbox _c4'>4</div>    | Blue              |
+| <div class='cbox _c5'>5</div>    | Magenta           |
+| <div class='cbox _c6'>6</div>    | Cyan              |
+| <div class='cbox _c7'>7</div>    | White             |
+| <div class='cbox _c8'>8</div>    | Black             |
+| <div class='cbox _c9'>9</div>    | Dark Grey         |
+| <div class='cbox _c10'>10</div>  | Dark Green        |
+| <div class='cbox _c11'>11</div>  | Orange            |
+| <div class='cbox _c12'>12</div>  | Dark Orange       |
+| <div class='cbox _c13'>13</div>  | Brown             |
+| <div class='cbox _c14'>14</div>  | Pink              |
+| <div class='cbox _c15'>15</div>  | Light Grey        |
 
 ## Tile Maps
 
