@@ -251,6 +251,87 @@ Function 8,5 plays a sound effect immediately. These will be synthesised to the 
 | 22   | las30      |
 | 23   | las10      |
 
+# Filing system
+
+The Neo6502 supports the FAT32 file system on a USB mass storage device or SD
+card. Only the first partition is supported, and filenames must be in the
+standard DOS 8.3 format.
+
+There is a fairly standard set of functions for loading and saving files,
+manipulating files and directories, and performing random-access file
+operations.
+
+## File attributes
+
+Files may have any combination of the following bits set.
+
+| Name               | Value | Meaning                                   |
+| ------------------ | ----- | ----------------------------------------- |
+| `FIOATTR_DIR`      | 0x01  | This is a directory (may not be modified) |
+| `FIOATTR_SYSTEM`   | 0x02  | This is a system file and will be hidden from directory listings |
+| `FIOATTR_ARCHIVE`  | 0x04  | File is archived; automatically cleared when the file is modified |
+| `FIOATTR_READONLY` | 0x08  | File is read only and may not be overwritten or modified |
+| `FIOATTR_HIDDEN`   | 0x10  | This will be hidden from directory listings |
+
+## Error codes
+
+Most of the functions in group 3 will return an error/status code to indicate
+whether the operation succeeded or not. This will be a value from the following
+enumeration.
+
+Values here are grouped by their top four bits; applications will typically only
+need to check the group value unless they are interested in the specific error.
+
+### Group 0; miscellaneous
+
+| Name | Value | Meaning |
+| ---- | ----- | ------- |
+| `FIOERROR_OK`            | 0x00 | Operation succeeded (not an error) |
+| `FIOERROR_UNKNOWN`       | 0x01 | Something went wrong, but we don't know what |
+| `FIOERROR_EOF`           | 0x02 | A read or directory enumeration operation reached the end of the file |
+| `FIOERROR_UNIMPLEMENTED` | 0x03 | Operation is not implemented |
+
+### Group 1: path errors
+
+| Name | Value | Meaning |
+| ---- | ----- | ------- |
+| `FIOERROR_NO_FILE`           | 0x11 | Could not find the file |
+| `FIOERROR_NO_PATH`           | 0x12 | Could not find the path |
+| `FIOERROR_INVALID_DRIVE`     | 0x13 | The logical drive number is invalid |
+| `FIOERROR_INVALID_NAME`      | 0x14 | The path name format is invalid |
+| `FIOERROR_INVALID_PARAMETER` | 0x15 | Given parameter is invalid |
+
+### Group 2: access errors
+
+| Name | Value | Meaning |
+| ---- | ----- | ------- |
+| `FIOERROR_DENIED`          | 0x21 | Access denied due to prohibited access or disk or directory full |
+| `FIOERROR_EXIST`           | 0x22 | Access denied due to prohibited access |
+| `FIOERROR_INVALID_OBJECT`  | 0x23 | The file/directory object is invalid |
+| `FIOERROR_WRITE_PROTECTED` | 0x24 | The physical drive is write protected |
+| `FIOERROR_LOCKED`          | 0x25 | File is in use |
+
+### Group 3: media errors
+
+| Name | Value | Meaning |
+| ---- | ----- | ------- |
+| `FIOERROR_DISK_ERR`      | 0x31 | A hard error occurred in the low level disk I/O layer |
+| `FIOERROR_INT_ERR`       | 0x32 | Assertion failed |
+| `FIOERROR_NOT_READY`     | 0x33 | The physical drive cannot work |
+| `FIOERROR_NOT_ENABLED`   | 0x34 | The volume has no work area |
+| `FIOERROR_NO_FILESYSTEM` | 0x35 | The filesystem is invalid |
+
+### Group 4: internal errors
+
+These indicate an internal error with the Morpheus firmware and should never happen.
+
+| Name | Value | Meaning |
+| ---- | ----- | ------- |
+| `FIOERROR_MKFS_ABORTED`        | 0x41 | The f_mkfs() aborted due to any problem |
+| `FIOERROR_TIMEOUT`             | 0x42 | Could not get a grant to access the volume within defined period |
+| `FIOERROR_NOT_ENOUGH_CORE`     | 0x43 | LFN working buffer could not be allocated |
+| `FIOERROR_TOO_MANY_OPEN_FILES` | 0x44 | fatfs has seen too many open files |
+
 # API Functions
 
 The following tables are a comprehensive list of all supported API functions.
