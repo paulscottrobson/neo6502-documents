@@ -12,3 +12,74 @@ th {
 table {
     margin-bottom: 1em;
 }
+.cbox {
+    width:100%;
+    height:100%;
+    display: block;
+    text-align: center;
+    font-weight: bolder;
+}
+._c0 {
+    background-color: #000;
+    color: #fff;
+}
+._c1 {
+    background-color: #f04;
+    color: #000;
+}
+._c2 {
+    background-color: #0e3;
+    color: #000;
+}
+._c3 {
+    background-color: #fe2;
+    color: #000;
+}
+._c4 {
+    background-color: #125;
+    color: #fff;
+}
+._c5 {
+    background-color: #725;
+    color: #fff;
+}
+._c6 {
+    background-color: #2af;
+    color: #000;
+}
+._c7 {
+    background-color: #ffe;
+    color: #000;
+}
+._c8 {
+    background-color: #000;
+    color: #fff;
+}
+._c9 {
+    background-color: #554;
+    color: #fff;
+}
+._c10 {
+    background-color: #085;
+    color: #fff;
+}
+._c11 {
+    background-color: #FA0;
+    color: #000;
+}
+._c12 {
+    background-color: #a53;
+    color: #fff;
+}
+._c13 {
+    background-color: #879;
+    color: #000;
+}
+._c14 {
+    background-color: #FCA;
+    color: #000;
+}
+._c15 {
+    background-color: #ccc;
+    color: #000;
+}
