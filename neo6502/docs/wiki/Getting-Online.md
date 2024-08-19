@@ -10,4 +10,6 @@ At present we have a program repository, but now we have a solid Wifi connection
 
 [The board can be acquired from here and other Olimex suppliers](https://www.olimex.com/Products/IoT/ESP8266/MOD-WIFI-ESP8266/open-source-hardware)
 
+[How to access the Prophet Server here](https://gitlab.com/bocianu/neo-prophet)
+
 Thanks to Wojciech Bocianski for his awesome work on this.
