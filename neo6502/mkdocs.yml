@@ -22,7 +22,7 @@ nav:
         - 'Mad Pascal': wiki/Mad‐Pascal-for-Neo6502.md
         - 'CC65 Sample' : wiki/Using-CC65.md
         - 'LLVM MOS': wiki/Using-LLVM-for-MOS.md
-
+    - Getting Online: wiki/Getting-Online.md
     - Wiki: wiki/home.md
     
 plugins:

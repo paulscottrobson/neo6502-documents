@@ -8,6 +8,7 @@ There is pdf copy of this documentation [here](https://neo6502.com/pdf/document.
 - "Clean" machine, 64k RAM available
 - Low cost purchase, sold for 30 Euros
 - All software and hardware is open source
+- Wifi support (requires additional inexpensive board)
 - 320 x 240 256 colour display on HDMI/DVI with a palette
 - 32k Graphics RAM for tiles and sprites
 - 128 sprites up to 32x32 pixels.

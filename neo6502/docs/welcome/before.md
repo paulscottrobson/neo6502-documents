@@ -4,7 +4,7 @@
 
 Besides the board itself, you will need various other devices to make the computer work. Most of these are relatively straightforward.
 
-Some however are <u>**worth acquiring when you buy the board**</u>. This is because some distributors, most in fact, charge a significant amount for postage for small orders, so if you order them later it will be more expensive.
+Some however are <u>**worth acquiring when you buy the board**</u>. This is because some distributors, most in fact, charge a significant amount for postage for small orders, so if you order them later it will be more expensive. The devices shown below, and most of the UEXT boards are excellent value for money.
 
 ### USB Hub issues.
 
@@ -35,6 +35,12 @@ To program the Pico , you either need a USB A - USB A cable is required, it is a
 This is completely optional ; it is a small box which the Neo6502 board fits into, all the main sockets and connectors are exposed. For P&P reasons , if you want it, it probably makes sense to order it at the same time as the board. It is available in blue or red lettering.
 
 ![BOX-Neo6502-R - Open Source Hardware Board](assets/BOX-NEO6502-B-1.jpg)
+
+## Internet connection
+
+Neo6502 now has an internet connection and a program source written by Wojciech Bocianski (aka "Bocianu"). This is not built in and requires [this board](https://www.olimex.com/Products/IoT/ESP8266/MOD-WIFI-ESP8266/open-source-hardware) which plugs into the UEXT port.
+
+![MOD-WIFI-ESP8266-1](./assets/MOD-WIFI-ESP8266-1.jpg)
 
 ### UEXT Devices
 
