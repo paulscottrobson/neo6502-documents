@@ -893,7 +893,7 @@ Select a mouse cursor in Parameter:0 ; returns error status if the cursor is not
 
 ### Function 1 : Blitter Busy
 
-Returns a non zero value in Parameter:1 if the blitter/DMA system is currently transferring data, used to check availability and transfer completion.
+Returns a non zero value in Parameter:0 if the blitter/DMA system is currently transferring data, used to check availability and transfer completion.
 
 ### Function 2 : Simple Blit Copy
 

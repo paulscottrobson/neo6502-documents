@@ -75,6 +75,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | min(a,b)               | Return the smaller of a and b (numbers or strings)           |
 | mos(command)           | Like the mos command, but returns an non zero error code if the command caused an error. |
 | mouse(x,y[,scroll])    | Reads the mouse. The return value indicates button state (bit 0 left, bit 1 right), and the mouse position and also the scrolling wheel position are updated into the given variables. |
+| not [term]             | Returns the logical not of a term.                           |
 | notes(c)               | Return the number of notes outstanding on channel c including the one currently playing -- so will be zero when the channel goes silent. |
 | page                   | Return the address of the program base (e.g. the variable table) |
 | peek(a)                | Read byte value at a                                         |
