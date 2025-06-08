@@ -50,7 +50,7 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | eof(f)                 | Returns non-zero value if at end of file f.                  |
 | err                    | Current error number                                         |
 | erl                    | Current error line number                                    |
-| event(v,r)             | event takes an integer variable and a fire rate (r) in 1/100 s, and uses the integer variable to return -1 at that rate. If the value in 'v' is zero, it resets (if you pause say), if the value in v is -1 the timer will not fire -- to unfreeze, set it to zero and it will resynchronise. |
+| event(v,p)             | event takes an integer variable (v) and a period (p) in 1/100s, and returns true (-1) once per period. For the remainder of the period, it will instead return false. This can be used to perform actions at regular intervals. The variable v is updated to track the timer state. Setting the value of v to zero initializes the timer, which will start with an initial "true" response. Setting v to -1 will pause the timer -- to unfreeze, set it to zero and it will resynchronise. |
 | exists(file$)          | Returns true (-1) if the file exists, false (0) otherwise    |
 | exp(n)                 | e to the power n                                             |
 | false                  | Return constant 0, improves boolean readability              |
@@ -60,8 +60,8 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | idevice(device)        | Returns true if i2c device present.                          |
 | iread(device,register) | Read byte from I2C Device Register                           |
 | instr(str$,search$)    | Returns the first position of search$ in str$, indexed from 1. Returns zero if not found. |
-| int(n)                 | Whole part of the float value n. Integers are unchanged.     |
-| isval(s$)              | Converts string to number, returns -1 if okay, 0 if fails.   |
+| int(n)                 | For positive values of n, the whole part of the float value is returned. For negative numbers, the next lowest integer is returned (if not already an integer). Integers are unchanged.     |
+| isval(s$)              | Tests if string could be converted to number (i.e. with val). Returns -1 if okay, 0 if fails.   |
 | joycount()             | Read the number of attached joypads, not including keyboard emulation of one. |
 | joypad([index],dx,dy)  | Reads the current joypad. The return value has bit 0 set if A is pressed, bit 1 set if B is pressed. Values -1,0 or 1 are placed into dx,dy representing movement on the D-Pad. If there is no gamepad plugged in (at the time of writing it doesn't work) the key equivalents are WASDOP and the cursor keys. If [index] is provided it is a specific joypad (from 1,0 is the keyboard), otherwise it is a composite of all of them. |
 | key(n)                 | Return the state of the given key. The key is the USB HID key scan code. |
@@ -80,11 +80,11 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | page                   | Return the address of the program base (e.g. the variable table) |
 | peek(a)                | Read byte value at a                                         |
 | pin(n)                 | Return value on UEXT pin n if input, output latch value if output. |
-| point(x,y)             | Read the screen pixel at coordinates x,y. This is graphics data only. |
+| point(x,y)             | Reads the screen pixel at coordinates x,y ignoring the sprite layer. |
 | pow(a,b)               | Returns a raised to the power b ; the result is always floating point. |
-| rand(n)                | Random integer 0 { x { n (e.g. 0 to n-1)                     |
+| rand(n)                | Random integer 0 <= x < n (e.g. 0 to n-1)                     |
 | right$(a$,n)           | Rightmost n characters of a$                                 |
-| rnd(n)                 | Random number 0 { x { 1, ignores n.                          |
+| rnd(n)                 | Random number 0 <= x < 1, ignores n.                          |
 | sin(n)                 | Sine of n, n Is in degrees.                                  |
 | spc(n)                 | Returns a string of n spaces.                                |
 | spoint(x,y)            | Reads the colour index on the sprite layer. 0 is transparency |
@@ -93,10 +93,10 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | tab(n)                 | Advance to screen column n if not past it already.           |
 | tan(n)                 | Tangent of n, n Is in degrees.                               |
 | true                   | Return constant -1, improves boolean readability             |
-| time()                 | Return time since power on in 100^th^ of a seconds.          |
+| time()                 | Return time since power on in 100<sup>th</sup> of a seconds.          |
 | uhasdata()             | Return true if there is data in the UART Receive buffer.     |
 | upper$(a$)             | Convert a string to upper case                               |
-| val(s$)                | Convert string to number. Error if bad number.               |
+| val(s$)                | Convert string to number. Error if bad number. (See isval)              |
 | vblanks()              | Return the number of vblanks since power on. This is updated at the start of the vblank period. |
 
 
@@ -119,16 +119,15 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | delete                                  | Delete a line or range of lines                              |
 | dim {array}(n,[m]), $...                | Dimension a one or two dimension string or number array, up to 255 |
 | do ... exit ... loop                    | General loop you can break out of at any point.              |
-| doke {addr},{data}                      | Write word to address                                        |
+| doke {addr},{data}                      | Write word (two bytes) to addr (low byte) and addr+1 (high byte).                                    |
 | edit                                    | Basic Screen Editor                                          |
 | end                                     | End Program                                                  |
 | fkey                                    | Lists the defined function keys                              |
-| fkey {key},{string}                     | Define the behaviour of F1..F10 -- the characters in the string |
-| for {var} = {start} to/downto           | For loop. Note this is non standard,Limitations are : the index must be an integer. Step can only be 1 (to) or -1 (downto). Next does not specify an index and cannot be used to terminate loops using the 'wrong' index. |
-| gload {filename}                        | Load filename into graphics memory.                          |
+| fkey {key},{string}                     | Define a keyboard macro for a function key, where key is an integer 1--10, and string is the macro text. Take care in the emulator as these may conflict with built-in functions. |
+| for {var} = {start} to/downto {end} ... next {var}           | For loop. Note this is non standard. Limitations are : the index must be an integer. Step is implied and can only be 1 (to) or -1 (downto). The "next" keyword does not specify an index and cannot be used to terminate loops using the 'wrong' index. |
+| gload {filename}                        | Load filename into graphics memory. See [Graphics Data Format](/reference/api/#graphics-data).                         |
 | gosub {expr}                            | Call subroutine at line number. For porting only. See goto.  |
-| goto {expr}                             | Transfer execution to line number. For porting only. Use in general coding is a capital offence. If I write RENUMBER it |
-| if {expr} then ....                     | Standard BASIC if, executes command or line number. (IF .. GOTO doesn't work, use IF .. THEN nn) |
+| goto {expr}                             | Transfer execution to the specified line number. For porting only—using GOTO in new code is strongly discouraged. Note: If you use the RENUMBER command, it will not update GOTO or GOSUB targets, so you must manually fix any affected line numbers. Also, using the **edit** command will automatically renumber the program, which can break GOTO and GOSUB references. **Instead of GOTO and GOSUB, it is recommended to use named procedures with PROC, ENDPROC, and CALL for structured and maintainable code.** |
 | if {expr}: .. else .. endif             | Extended multiline if, without THEN. The else clause is optional. |
 | ink fgr[,bgr]                           | Set the ink foreground and optionally background for the console. |
 | input {stuff}                           | Input has an identical syntax and behaviour to Print except that variables are entered via the keyboard rather than printed. |
@@ -140,26 +139,27 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | iwrite {dev},{reg},{b}                  | Write byte to I2C Device Register                            |
 | let {var} = {expr}                      | Assignment statement. The LET is optional.                   |
 | library                                 | Librarise / Unlibrarise code.                                |
-| list [{from}][,][{to}]                  | List program to display by line number or procedure name.    |
-| list {procedure}()                      |                                                              |
+| list [{from}][,][{to}]                  | List program to display by line number.                      |
+| list {procedure}()                      | List the code for the named procedure.                       |
 | load "file"[,{address}]                 | Load file to BASIC space or given address.                   |
-| local {var},{var}                       | Local variables, use after PROC, restored at ENDPROC variables can |
+| local {var},{var}                       | Declares local variables for use within a procedure (PROC). These variables are only accessible inside the procedure and their values are automatically restored to their previous state when ENDPROC is reached. Use after PROC and before any code in the procedure. |
 | mon                                     | Enter the machine code monitor                               |
 | mos {command}                           | Execute MOS command.                                         |
 | mouse cursor {n}                        | Select mouse cursor {n} [0 is the default hand pointer]      |
-| mouse show                              | hide                                                         |
-| mouse TO {x},{y}                        | Position mouse cursor                                        |
-| new                                     | Erase Program                                                |
+| mouse show                              | Show the mouse cursor.                                       |
+| mouse hide                              | Hide the mouse cursor.                                       |
+| mouse TO {x},{y}                        | Position mouse cursor.                                       |
+| new                                     | Erase Program.                                               |
 | next {variable}                         | Ends for loop. The variable parameter is optional. You cannot unwind nested FOR/NEXTs , next must operate in order. |
 | old                                     | Undoes a new. This can fail depending on what has been done since the 'new'. |
 | on error {code}                         | Install an error handler that is called when an error occurs. Effectively this is doing a GOTO that code, so recovery is dependent on what you actually |
 | open input\|output [channel],[file]     | Open a file for input or output on the given channel, using the given file name. Output erases the current file. This gives an error if the file does not exist ; rather than trap this error it is recommended to use the exists() function if you think the file may not be present. |
-| palette c,r,g,b                         | Set colour c to r,g,b values -- these are all 0-255 however it is actually 3:2:3 colour, so they will be approximations. |
-| palette clear                           | Reset palette to default                                     |
+| palette c,r,g,b                         | Set colour c to r,g,b values -- these are all 0-255 however the colour is stored as 8-bit [3:2:3 colour](https://en.wikipedia.org/wiki/List_of_monochrome_and_RGB_color_formats#3-2-3_bit_RGB_or_8-4-8_levels_RGB), so the actual colour will be an approximation. |
+| palette clear                           | Reset palette to [default](/reference/graphics/#pixel-colours) |
 | pin {pin},{value}                       | Set UEXT {pin} to given value.                               |
 | pin {pin} INPUT                         | output                                                       |
 | poke {addr},{data}                      | Write byte to address                                        |
-| print {stuff}                           | Print strings and numbers, standard format - , is used for   |
+| print {stuff}                           | Print strings and numbers to the screen. Items can be separated by commas (to advance to the next tab stop) or semicolons (to print items without a space). Expressions, variables, and string literals are supported. A trailing comma moves the cursor to the next tab stop, while a trailing semicolon leaves the cursor immediately after the last printed item (without advancing to a new line or tab stop). Without a trailing separator, PRINT moves the cursor to the beginning of a new line. |
 | print #{channel},{expr},{expr}          | Writes a sequence of expressions to the open file.           |
 | print line #{channel}.{var}.{var}       | Prints a line to an output channel as an ASCII file, in LF format (e.g. lines are seperated by character code 10). This can be mixed with the above format *but* the sequence has to be the same ; you ann't write a string using print line and read it back with input and vice versa. All variables must be strings. |
 | proc {name>([ref] p1,p2,...) .. endproc | Delimits procedures, optional parameters, must match call. Parameters can be defined as reference parameters and will return values. Parameters cannot be arrays. |
@@ -170,14 +170,14 @@ Many of these are helpful for understanding specific API functions, as many BASI
 | restore {line}                          | Restore data pointer to line number                          |
 | return                                  | Return from subroutine called with gosub.                    |
 | run                                     | Run Program                                                  |
-| run "{program}"                         | Load & Run program.                                          |
+| run "{program}"                         | Load & Run program that has been saved in the [Neo Load file format](/reference/formats/#neo-load-file-format).                                          |
 | save "file"[,{adr},{sz}]                | Save BASIC program or memory from {adr} length {sz}          |
 | sreceive {a},{s}                        | Send or receive bytes starting at a, count s to SPI device   |
 | stransmit {a},{s}                       |                                                              |
 | ssend {data}                            | Send data to SPI device ; this is comma seperated data, numbers or strings. If a semicolon is used as a seperator e.g. 4137; then the constant is sent as a 16 bit value. |
 | stop                                    | Halt program with error                                      |
 | sys {address}                           | Call 65C02 machine code at given address. Passes contents of variables A,X,Y in those registers. |
-| tilemap addr,x,y                        | Define a tilemap. The tilemap data format is in the API. The tilemap is stored in memory at addr, and the offset into the |
+| tilemap addr,x,y                        | Define a tilemap. The tilemap data format is described [here](/reference/graphics/#tile-maps). The tilemap is stored in memory at addr, and the offset into the map is set by x and y. |
 | uconfig {baud}[,{prt}]                  | Set the baud rate and protocol for the UART. Currently only 8N1 is supported. |
 | ureceive {d},{a},{s}                    | Send or receive bytes to/from the UART starting at a, count s |
 | utransmit {d},{a},{s}                   |                                                              |
