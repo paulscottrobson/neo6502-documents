@@ -121,6 +121,46 @@ This is a support function which deletes a line in the console and should not be
 
 Clears the screen.
 
+<details>
+
+<summary>Assembler example</summary>
+
+The following code is a stand alone example of clearing the screen:
+
+```
+; --- API Control Registers and Constants ---
+ControlPort             = $FF00             ; Base address for the system API control registers
+API_COMMAND             = ControlPort + 0   ; API Command/Status Register (write to execute, read for status)
+API_FUNCTION            = ControlPort + 1   ; API Function Selection Register
+
+API_FN_CLEAR_SCREEN     = $0C               ; ID for the 'Clear Screen' function (12 decimal, $0C hexadecimal)
+API_GROUP_CONSOLE       = $02               ; ID for the 'Console' function group (2 decimal, $02 hexadecimal)
+
+
+; --- API Call Logic ---
+
+        ; Step 1: Select the function to be executed.
+        ; We place the function ID into the API_FUNCTION slot to tell the API
+        ; what we want to do in the next step.
+        lda #API_FN_CLEAR_SCREEN
+        sta API_FUNCTION
+
+    @wait_api:
+        ; Step 2: Wait for the API to be ready.
+        ; This loop reads the status from API_COMMAND until it returns 0, ensuring
+        ; any previous operation is complete before we issue a new one.
+        lda API_COMMAND
+        bne @wait_api
+
+        ; Step 3: Execute the selected function.
+        ; Loading the 'Console' group ID and storing it in the API_COMMAND register
+        ; triggers the 'Clear Screen' function we selected in Step 1.
+        lda #API_GROUP_CONSOLE
+        sta API_COMMAND
+```
+
+</details>
+
 ### Function 13 : Cursor Position
 
 Returns the current screen character cell of the cursor in Parameter:0 (X), Parameter:1 (Y).
