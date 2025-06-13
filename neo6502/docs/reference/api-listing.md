@@ -123,9 +123,9 @@ Clears the screen.
 
 <details>
 
-<summary>Assembler example</summary>
+<summary>Assembly example</summary>
 
-The following code is a stand alone example of clearing the screen:
+The following code is a stand alone example of clearing the screen in assembly:
 
 ```
 ; --- API Control Registers and Constants ---
@@ -160,6 +160,34 @@ API_GROUP_CONSOLE       = $02               ; ID for the 'Console' function grou
 ```
 
 </details>
+
+<details>
+
+<summary>C example</summary>
+
+The following code is a stand alone example of clearing the screen in C:
+
+```
+#include <stdio.h>
+
+#define CC_CLS 0x0C               /* ID for the 'Clear Screen' function (12 decimal, 0x0C hexadecimal) */
+
+int main(void) {
+
+    printf("Hello, this text will soon disappear!");
+
+    // Wait for a keypress
+    getchar();
+
+    // Clear the entire screen
+    putchar(CC_CLS);
+
+    printf("The screen has been cleared.");
+
+    return 0;
+}
+```
+
 
 ### Function 13 : Cursor Position
 
