@@ -176,10 +176,10 @@ int main(void) {
 
     printf("Hello, this text will soon disappear!");
 
-    // Wait for a keypress
+    /* Wait for a keypress */
     getchar();
 
-    // Clear the entire screen
+    /* Clear the entire screen */
     putchar(CC_CLS);
 
     printf("The screen has been cleared.");
