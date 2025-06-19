@@ -97,6 +97,67 @@ Write the character specified in Parameter:0 to the console at the cursor positi
 
 Refer to Section "Console Codes" for details.
 
+<details>
+
+<summary>Assembly example</summary>
+
+The following code is a stand alone example of writing a charater to the console in assembly:
+
+```
+; --- API Control Registers and Constants ---
+ControlPort             = $FF00             ; Base address for the system API control registers
+API_COMMAND             = ControlPort + 0   ; API Command/Status Register (write to execute, read for status)
+API_FUNCTION            = ControlPort + 1   ; API Function Selection Register
+API_FN_WRITE_CHAR       = $06               ; ID for the 'Write Character' function (6 decimal, $06 hexadecimal)
+API_GROUP_CONSOLE       = $02               ; ID for the 'Console' function group (2 decimal, $02 hexadecimal)
+API_PARAMETERS = ControlPort + 4            ; function parameters base address (+0-7)
+
+; --- API Call Logic ---
+        ; Step 1: Select the function to be executed.
+        ; We place the function ID into the API_FUNCTION slot to tell the API
+        ; what we want to do in the next step.
+        lda #API_FN_WRITE_CHAR
+        sta API_FUNCTION
+    @wait_api:
+        ; Step 2: Wait for the API to be ready.
+        ; This loop reads the status from API_COMMAND until it returns 0, ensuring
+        ; any previous operation is complete before we issue a new one.
+        lda API_COMMAND
+        bne @wait_api
+
+        ; Step 3: Place the character to be written into the parameter register.
+        ; For the 'Write Character' function, the first parameter is the ASCII character.
+        lda #$4E                ; ASCII for 'N'
+        sta API_PARAMETERS + 0
+
+        ; Step 4: Execute the selected function.
+        ; Storing the 'Console' group ID in the API_COMMAND register
+        ; triggers the 'Write Character' function we selected in Step 1.
+        lda #API_GROUP_CONSOLE
+        sta API_COMMAND
+```
+
+</details>
+
+<details>
+
+<summary>C example</summary>
+
+The following code is a stand alone example of writing a character to the console in C:
+
+```
+#include <stdio.h>
+
+int main(void) {
+
+    /* Write the character to the console */
+    putchar('N');
+
+    return 0;
+
+}
+```
+
 ### Function 7 : Set Cursor Pos
 
 Move the cursor to the screen character cell Parameter:0 (X), Parameter:1 (Y).
