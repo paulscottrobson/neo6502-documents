@@ -262,6 +262,118 @@ Erase all characters within the rectangular region specified in Parameters:0,1 (
 
 Sets the foreground colour to Parameter:0 and the background colour to Parameter:1.
 
+<details>
+
+<summary>Assembly example</summary>
+
+The following code is a stand alone example of setting the background text color to blue and the foreground to yellow in assembly:
+
+```
+; --- API Control Registers and Constants ---
+ControlPort             = $FF00             ; Base address for the system API control registers
+API_COMMAND             = ControlPort + 0   ; API Command/Status Register
+API_FUNCTION            = ControlPort + 1   ; API Function Selection Register
+API_PARAMETERS          = ControlPort + 4   ; First API parameter register
+
+API_FN_SET_TEXT_COLOR   = $0F               ; ID for the 'Set Text Color' function (15 decimal, $0F hexadecimal)
+API_GROUP_CONSOLE       = $02               ; ID for the 'Console' function group
+
+; --- Color Constants ---
+COLOR_YELLOW            = $03
+COLOR_BLUE              = $04
+
+; --- API Call Logic ---
+
+        ; Step 1: Set the desired colors in the parameter registers.
+        ; Load the value for yellow and store it in the first parameter register
+        ; for the foreground color.
+        lda #COLOR_YELLOW
+        sta API_PARAMETERS
+
+        ; Load the value for blue and store it in the second parameter register
+        ; for the background color.
+        lda #COLOR_BLUE
+        sta API_PARAMETERS + 1
+
+        ; Step 2: Select the function to be executed.
+        ; Place the function ID for 'Set Text Color' into the API_FUNCTION slot.
+        lda #API_FN_SET_TEXT_COLOR
+        sta API_FUNCTION
+
+    @wait_api:
+        ; Step 3: Wait for the API to be ready.
+        ; This loop reads the status from API_COMMAND until it returns 0, ensuring
+        ; any previous operation is complete.
+        lda API_COMMAND
+        bne @wait_api
+
+        ; Step 4: Execute the selected function.
+        ; Loading the 'Console' group ID and storing it in the API_COMMAND register
+        ; triggers the 'Set Text Color' function with the parameters we set in Step 1.
+        lda #API_GROUP_CONSOLE
+        sta API_COMMAND
+
+        ; The screen will now have yellow text on a blue background for any
+        ; subsequent text output.
+```
+
+</details>
+
+<details>
+
+<summary>C example</summary>
+
+The following code is a stand alone example of setting the background text color to blue and the foreground to yellow in C:
+
+```
+#include <stdint.h> // Include for standard integer types like uint8_t
+
+/* --- API Control Registers and Constants ---
+ * We define macros that are pointers to volatile 8-bit unsigned integers (bytes).
+ * 'volatile' tells the compiler that the value at this address can change at
+ * any time, preventing it from making incorrect optimizations.
+ */
+#define API_COMMAND        (*(volatile uint8_t*)0xFF00)
+#define API_FUNCTION       (*(volatile uint8_t*)0xFF01)
+#define API_PARAMETER_0    (*(volatile uint8_t*)0xFF04)
+#define API_PARAMETER_1    (*(volatile uint8_t*)0xFF05)
+
+// API function and group identifiers
+#define API_FN_SET_TEXT_COLOR   0x0F // ID for the 'Set Text Color' function
+#define API_GROUP_CONSOLE       0x02 // ID for the 'Console' function group
+
+// --- Color Constants ---
+#define COLOR_YELLOW            0x03
+#define COLOR_BLUE              0x04
+
+/*
+ * --- Main program entry point ---
+ */
+int main(void)
+{
+
+    // Step 1: Set the desired colors in the parameter registers.
+    API_PARAMETER_0 = COLOR_YELLOW;
+    API_PARAMETER_1 = COLOR_BLUE;
+
+    // Step 2: Select the function to be executed.
+    API_FUNCTION = API_FN_SET_TEXT_COLOR;
+
+    // Step 3: Wait for the API to be ready by polling the command register.
+    // An empty while loop is a common way to do this in C.
+    while (API_COMMAND != 0) { /* do nothing */ }
+
+    // Step 4: Execute the selected function by writing the group ID to
+    // the command register.
+    API_COMMAND = API_GROUP_CONSOLE;
+
+    // The program can now continue. Any subsequent text output functions,
+    // like printf(), will now use the new colors.
+
+    return 0; // Exit the program
+}
+```
+
 ### Function 16 : Cursor Inverse
 
 Toggles the cursor colour between normal and inverse (ie: swaps FG and BG colors). This should not be used.
