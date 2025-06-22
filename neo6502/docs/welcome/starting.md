@@ -32,7 +32,7 @@ If you are using the SD card it should come with a short ribbon cable which plug
 
 First you need to download the current release of the Morpheus software [here](https://github.com/paulscottrobson/neo6502-firmware) . 
 
-The releases are on the right of the screen, the current release is 0.30.0. Clicking on it should show the releases page which has a link to "neo6502.zip"
+The releases are on the right of the screen, the current release is 1.0.0. Clicking on it should show the releases page which has a link to "neo6502.zip"
 
 Download and extract this file. You will see something like this, this is Linux, but it will be very similar on Windows or Macintosh.
 
@@ -62,7 +62,7 @@ Below the logos, you should see.
 
 ### Morpheus Version
 
-The Morpheus title and version in Yellow - it currently says "Morpheus Firmware: v 0.28.1"
+The Morpheus title and version in Yellow - it currently says "Morpheus Firmware: v1.0.0"
 
 ### Storage Type
 

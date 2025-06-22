@@ -633,6 +633,10 @@ Parameter:0 is non-zero if the file is at the end of the file.
 
 This call should be used on open files and may return an error if the file is closed.
 
+### Function 23 : Get Current Working Directory.
+
+Copies the current working directory into the String at address Parameters:0,1. which is of maximum length Parameters:2
+
 ### Function 32 : List Filtered
 
 Prints a filtered file listing of the current directory to the console. On input:
