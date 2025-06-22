@@ -71,6 +71,78 @@ If there are no key presses in the queue, Parameter:0 will be zero.
 
 Note that this Function is best for text input, but not for games. Function 7,1 is more optimal for games, as this only detects key presses, you cannot check whether the key is currently down or not.
 
+<details>
+
+<summary>Assembly example</summary>
+
+The following code is a stand alone example of reading a charater to the console in assembly:
+
+```
+; --- API Control Registers and Constants ---
+ControlPort             = $FF00             ; Base address for the system API control registers
+API_COMMAND             = ControlPort + 0   ; API Command/Status Register (write to execute, read for status)
+API_FUNCTION            = ControlPort + 1   ; API Function Selection Register
+API_FN_READ_CHAR        = $01               ; ID for the 'Read Character' function (1 decimal)
+API_GROUP_CONSOLE       = $02               ; ID for the 'Console' function group (2 decimal, $02 hexadecimal)
+API_PARAMETERS = ControlPort + 4            ; function parameters base address (+0-7)
+
+; --- API Call Logic ---
+        ; Step 1: Select the function to be executed.
+        ; We place the 'Read Character' function ID into the API_FUNCTION register
+        ; to tell the API what we want to do.
+        lda #API_FN_READ_CHAR
+        sta API_FUNCTION
+
+        ; Step 2: Execute the selected function.
+        ; First, we wait for the API to be ready by ensuring the command register is 0.
+        ; Then, we trigger the function by writing the 'Console' group ID to the
+        ; API_COMMAND register.
+    @wait_api_ready:
+        lda API_COMMAND
+        bne @wait_api_ready
+
+        lda #API_GROUP_CONSOLE
+        sta API_COMMAND
+
+        ; Step 3: Wait for the function to complete.
+        ; After issuing the command, the API becomes busy. We must wait for the
+        ; command register to return to 0, which signals that the operation
+        ; has finished and the result is available in the parameter register.
+    @wait_api_complete:
+        lda API_COMMAND
+        bne @wait_api_complete
+
+        ; Step 4: Retrieve the character from the parameter register.
+        ; The ASCII value of the key press is now in the first parameter slot.
+        ; If no key was in the queue, this will be 0.
+        lda API_PARAMETERS + 0  ; The character is now in the accumulator (A)
+```
+
+</details>
+
+<details>
+
+<summary>C example</summary>
+
+The following code is a stand alone example of reading a character from the console in C:
+
+```
+#include <stdio.h>  // Include standard I/O for functions like printf()
+
+int main() {
+    char key_pressed;
+
+    // This loop runs continuously.
+    while (1) {
+         key_pressed = getchar();
+         putchar(key_pressed);
+    }
+
+    return 0;
+
+}
+```
+
 ### Function 2 : Console Status
 
 Check to see if the keyboard queue is empty. If it is, Parameter:0 will be $FF, otherwise it will be $00
